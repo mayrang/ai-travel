@@ -38,7 +38,7 @@
 
 .startButton {
     position: fixed;
-    height: 3rem;
+    padding: .75rem 0;
    
     bottom: 2.5rem;
     width: 75%;
@@ -49,4 +49,5 @@
     justify-content: center;
     align-items: center;
     border-radius: 48px;
+    font-size: 24px;
 }
