@@ -3,6 +3,10 @@
 .main {
     width: 100dvw;
     height: 100dvh;
-    background-color: #14D476;
-   
+    /* background: radial-gradient(circle, #48A7F8, #9BDCFD); */
+    background: linear-gradient(135deg, #A1FF8B 0%, #3F93FF 96.83%);
 }
+
+
+
+

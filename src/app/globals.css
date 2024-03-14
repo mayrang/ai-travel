@@ -2,10 +2,21 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: 'NPSfontBold';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2310@1.0/NPSfontBold.woff2') format('woff2');
+  
+  font-style: normal;
+}
 :root {
+  font-family: 'NPSfontBold';
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
+  --base-green: #23C16B;
+  --title-1-size: 48px;
+  --title-1-line-height: 56px;
+  
 }
 
 @media (prefers-color-scheme: dark) {
@@ -13,9 +24,13 @@
     --foreground-rgb: 255, 255, 255;
     --background-start-rgb: 0, 0, 0;
     --background-end-rgb: 0, 0, 0;
+   
+
   }
 }
 
 body {
   margin: 0 !important;
 }
+
+
