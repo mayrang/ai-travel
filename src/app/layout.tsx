@@ -1,6 +1,6 @@
 import { Metadata } from "next";
-import "./globals.css"
-
+import "./globals.css";
+import AuthProvider from "./_component/AuthProvider";
 
 // export const metadata: Metadata = {
 //   title: {
@@ -12,9 +12,9 @@ import "./globals.css"
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" >
+    <html lang="en">
       <body className="w-full overflow-y-scroll bg-neutral-50">
-       {children}
+        <AuthProvider>{children}</AuthProvider>
       </body>
     </html>
   );
