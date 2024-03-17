@@ -7,6 +7,7 @@ import { auth } from "@/auth";
 import { redirect, useRouter } from "next/navigation";
 import Image from "next/image";
 import { useSession } from "next-auth/react";
+import LogoutButton from "./LogoutButton";
 
 type Props = {
   setClose: () => void;
@@ -29,14 +30,6 @@ export default function MenuModal({ setClose }: Props) {
         transition={{
           duration: 0.3,
           ease: "linear",
-        }}
-        style={{
-          position: "fixed",
-          top: 0,
-          left: 0,
-          width: "100%", // body 구역을 꽉 채우도록 설정
-          height: "100%", // body 구역을 꽉 채우도록 설정
-          overflow: "hidden", // 내용이 넘칠 경우를 방지하기 위해 overflow를 hidden으로 설정
         }}
       >
         <div className={styles.header}>
@@ -77,7 +70,7 @@ export default function MenuModal({ setClose }: Props) {
         <ul className={styles.footer}>
           <li>About</li>
           <li>
-            <button>Log out</button>
+            <LogoutButton />
           </li>
         </ul>
       </motion.div>
