@@ -3,20 +3,19 @@
 @tailwind utilities;
 
 @font-face {
-  font-family: 'NPSfontBold';
-  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2310@1.0/NPSfontBold.woff2') format('woff2');
-  
+  font-family: "NPSfontBold";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2310@1.0/NPSfontBold.woff2") format("woff2");
+
   font-style: normal;
 }
 :root {
-  font-family: 'NPSfontBold';
+  font-family: "NPSfontBold";
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
-  --base-green: #23C16B;
+  --base-green: #23c16b;
   --title-1-size: 48px;
   --title-1-line-height: 56px;
-  
 }
 
 @media (prefers-color-scheme: dark) {
@@ -24,13 +23,42 @@
     --foreground-rgb: 255, 255, 255;
     --background-start-rgb: 0, 0, 0;
     --background-end-rgb: 0, 0, 0;
-   
-
   }
 }
 
-body {
-  margin: 0 !important;
+body,
+html {
+  margin: 0;
+  padding: 0;
+  position: fixed;
+
+  width: 100%;
+
+  touch-action: none;
 }
-
-
+* {
+  box-sizing: border-box;
+}
+@media screen and (min-width: 480px) {
+  .body {
+    width: 100dvw;
+    width: 100dvh;
+    background-color: #fff;
+    z-index: 10;
+  }
+  .desktop {
+    position: fixed;
+    z-index: 11;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    overflow-x: hidden;
+    /* overflow: auto; 내용이 넘칠 경우 스크롤바를 표시 */
+    width: 480px;
+    height: 932px;
+    max-width: 480px;
+    max-height: 932px;
+    margin: auto;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  }
+}

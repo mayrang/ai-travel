@@ -1,56 +1,52 @@
 .background {
-    width: 100dvw;
-    height: 100dvh;
-    position: fixed;
-    z-index: 10;
-    background-color: rgba(0, 0, 0, .33);
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  z-index: 10;
+  background-color: rgba(0, 0, 0, 0.33);
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
 }
 
 .header {
-    display: flex;
-    align-items: center;
-    justify-content:flex-end;
-    padding: .7rem .7rem 0 .7rem;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 0.7rem 0.7rem 0 0.7rem;
 }
 
 .main {
-    border-top-left-radius:18px;
-    border-top-right-radius: 18px;
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    display: flex;
-    flex-direction: column;
+  border-top-left-radius: 18px;
+  border-top-right-radius: 18px;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
 
-    right: 0;
-    width: 100%;
-    height: auto;
-    background-color: #fff;
+  right: 0;
+  width: 100%;
+  height: auto;
+  background-color: #fff;
 }
 
-
 .title {
-    font-weight: 700;
-    font-size: 18px;
-    line-height: 18px;
-    text-align: center;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 18px;
+  text-align: center;
 }
 
 .kakaoButton {
-  
-    height: 42px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 2rem 3.8rem;
-    background: #FEE500;
-    border-radius: 12px;
-    margin: 2rem auto 2rem auto;
-    gap: 15px;
-    
+  height: 42px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem 3.8rem;
+  background: #fee500;
+  border-radius: 12px;
+  margin: 2rem auto 2rem auto;
+  gap: 15px;
 }

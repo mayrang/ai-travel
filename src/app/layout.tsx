@@ -13,8 +13,10 @@ import AuthProvider from "./_component/AuthProvider";
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <body className="w-full overflow-y-scroll bg-neutral-50">
-        <AuthProvider>{children}</AuthProvider>
+      <body>
+        <div className="desktop">
+          <AuthProvider>{children}</AuthProvider>
+        </div>
       </body>
     </html>
   );

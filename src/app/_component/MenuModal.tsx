@@ -30,6 +30,14 @@ export default function MenuModal({ setClose }: Props) {
           duration: 0.3,
           ease: "linear",
         }}
+        style={{
+          position: "fixed",
+          top: 0,
+          left: 0,
+          width: "100%", // body 구역을 꽉 채우도록 설정
+          height: "100%", // body 구역을 꽉 채우도록 설정
+          overflow: "hidden", // 내용이 넘칠 경우를 방지하기 위해 overflow를 hidden으로 설정
+        }}
       >
         <div className={styles.header}>
           <CloseButton onClick={setClose} width={27} />

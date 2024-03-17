@@ -1,6 +1,6 @@
 .header {
   position: fixed;
-  width: 100dvw;
+  width: 100%;
   min-height: 3rem;
   height: 3rem;
   display: flex;
