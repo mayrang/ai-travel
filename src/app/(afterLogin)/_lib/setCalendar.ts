@@ -1,3 +1,4 @@
+import { Holiday, Post, WeekDay } from "@/model/calendar";
 import dayjs from "dayjs";
 
 export const posts = [
@@ -52,35 +53,10 @@ export const posts = [
   },
 ];
 
-interface Post {
-  calendarId: number;
-  startTime: Date | dayjs.Dayjs;
-  endTime: Date | dayjs.Dayjs;
-  start?: boolean;
-  multiple?: boolean;
-  // Add other properties as needed
-}
-
-interface Holiday {
-  locdate: Date;
-  seq: number;
-  dateName: string;
-  isHoliday: "N" | "Y";
-  // Add other properties as needed
-}
-
-export interface WeekDay {
-  date: number;
-  dayFormat?: string;
-  type: "prev" | "now" | "next";
-  posts?: Post[];
-  holiday?: Holiday;
-}
-
 export const setCalendarArray = (
   year: number,
   month: number,
-  holidays: Holiday[] | undefined,
+  holidays: Holiday[] ,
   posts: Post[]
 ): WeekDay[][] => {
   const monthArray: WeekDay[][] = [];
@@ -172,8 +148,13 @@ export const setCalendarArray = (
       mapPosts.push(mapPost);
     }
 
-    const holiday = holidays?.find((holiday) => holiday.locdate?.toString() === dayFormat);
-    weekArray.push({ date: i, dayFormat, type: "now", posts: mapPosts, holiday });
+
+      const holiday = holidays.find((holiday) => holiday.locdate?.toString() === dayFormat);
+      
+      weekArray.push({ date: i, dayFormat, type: "now", posts: mapPosts, holiday });
+    
+   
+   
     if (count === 6) {
             monthArray.push(weekArray);
             weekArray = [];

@@ -4,15 +4,7 @@ import styles from "./home.module.css";
 import axios from "axios";
 
 export default async function page() {
-  console.log("check home");
-  const response = await axios.get(
-    `http://apis.data.go.kr/B090041/openapi/service/SpcdeInfoService/getHoliDeInfo?solYear=${2024}&solMonth=${"11"}&ServiceKey=${
-      process.env.NEXT_PUBLIC_HOLIDAY_API_KEY
-    }`
-  );
-
-  console.log(response.data.response?.body?.items?.item || []);
-
+  
   return (
     <div>
       home
