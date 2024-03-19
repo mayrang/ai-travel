@@ -56,7 +56,7 @@ export const posts = [
 export const setCalendarArray = (
   year: number,
   month: number,
-  holidays: Holiday[] ,
+  holidays: Holiday[],
   posts: Post[]
 ): WeekDay[][] => {
   const monthArray: WeekDay[][] = [];
@@ -71,7 +71,6 @@ export const setCalendarArray = (
 
   const allPosts: Post[] = [];
 
-  
   if (prevMonthLastDay !== 6) {
     for (let i = 0; i < prevMonthLastDay + 1; i++) {
       weekArray.unshift({ date: prevMonthLastDate - i, type: "prev" });
@@ -85,10 +84,14 @@ export const setCalendarArray = (
     }
   }
 
-
   for (let i = 1; i <= currentMonthLastDate; i++) {
-
-    if(dayjs(`${year}-${month.toString().padStart(2, "0")}-${i.toString().padStart(2, "0")}`).isBefore(dayjs().subtract(1, 'day'))){
+    if (
+      dayjs(
+        `${year}-${month.toString().padStart(2, "0")}-${i
+          .toString()
+          .padStart(2, "0")}`
+      ).isBefore(dayjs().subtract(1, "day"))
+    ) {
       weekArray.push({ date: i, type: "prev" });
       if (count === 6) {
         monthArray.push(weekArray);
@@ -97,11 +100,16 @@ export const setCalendarArray = (
       } else {
         count++;
       }
-    
 
       continue;
     }
-    if(dayjs(`${year}-${month.toString().padStart(2, "0")}-${i.toString().padStart(2, "0")}`).isAfter(dayjs().add(6, 'month'))){
+    if (
+      dayjs(
+        `${year}-${month.toString().padStart(2, "0")}-${i
+          .toString()
+          .padStart(2, "0")}`
+      ).isAfter(dayjs().add(6, "month"))
+    ) {
       weekArray.push({ date: i, type: "next" });
       if (count === 6) {
         monthArray.push(weekArray);
@@ -110,13 +118,16 @@ export const setCalendarArray = (
       } else {
         count++;
       }
-    
+
       continue;
     }
-    const dayFormat = `${year}${month.toString().padStart(2, "0")}${i.toString().padStart(2, "0")}`;
+    const dayFormat = `${year}${month.toString().padStart(2, "0")}${i
+      .toString()
+      .padStart(2, "0")}`;
     const dayPosts = posts.filter(
       (post) =>
-        dayjs(post.startTime).format("YYYYMMDD") <= dayFormat && dayFormat <= dayjs(post.endTime).format("YYYYMMDD")
+        dayjs(post.startTime).format("YYYYMMDD") <= dayFormat &&
+        dayFormat <= dayjs(post.endTime).format("YYYYMMDD")
     );
 
     let mapPosts: Post[] = [];
@@ -124,8 +135,11 @@ export const setCalendarArray = (
     for (const post of dayPosts) {
       let mapPost: Post;
 
-      const checkPost = allPosts.find((it) => it.calendarId === post.calendarId);
-      const isStartOfDay = dayFormat === dayjs(post.startTime).format("YYYYMMDD");
+      const checkPost = allPosts.find(
+        (it) => it.calendarId === post.calendarId
+      );
+      const isStartOfDay =
+        dayFormat === dayjs(post.startTime).format("YYYYMMDD");
 
       if (checkPost) {
         mapPost = {
@@ -148,20 +162,25 @@ export const setCalendarArray = (
       mapPosts.push(mapPost);
     }
 
+    const holiday = holidays.find(
+      (holiday) => holiday.locdate?.toString() === dayFormat
+    );
 
-      const holiday = holidays.find((holiday) => holiday.locdate?.toString() === dayFormat);
-      
-      weekArray.push({ date: i, dayFormat, type: "now", posts: mapPosts, holiday });
-    
-   
-   
+    weekArray.push({
+      date: i,
+      dayFormat,
+      type: "now",
+      posts: mapPosts,
+      holiday,
+    });
+
     if (count === 6) {
-            monthArray.push(weekArray);
-            weekArray = [];
-            count = 0;
-          } else {
-            count++;
-          }
+      monthArray.push(weekArray);
+      weekArray = [];
+      count = 0;
+    } else {
+      count++;
+    }
   }
 
   for (let i = 1; i < 7 - nextMonthFirstDay; i++) {
@@ -175,11 +194,8 @@ export const setCalendarArray = (
     }
   }
 
-
   return monthArray;
 };
-
-
 
 // export const setCalendarArray = (year, month, holidays, posts) => {
 //   let monthArray = [];
