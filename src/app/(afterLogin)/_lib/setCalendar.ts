@@ -111,18 +111,32 @@ export const setCalendarArray = (
 
 
   for (let i = 1; i <= currentMonthLastDate; i++) {
-    // if(dayjs(`${year}-${month.toString().padStart(2, "0")}-${i.toString().padStart(2, "0")}`).isBefore(dayjs())){
-    //   weekArray.unshift({ date: prevMonthLastDate - i, type: "prev" });
-    //   count = incrementCount(weekArray, monthArray, count);
-    //   console.log(dayjs(`${year}-${month.toString().padStart(2, "0")}-${i.toString().padStart(2, "0")}`).isBefore(dayjs()))
 
-    //   continue;
-    // }
-    // if(dayjs().add(6, 'month').isAfter(dayjs(`${year}-${month.toString().padStart(2, "0")}-${i.toString().padStart(2, "0")}`))){
-    //   weekArray.push({ date: i, type: "next" });
-    //   count = incrementCount(weekArray, monthArray, count);
-    //   continue;
-    // }
+    if(dayjs(`${year}-${month.toString().padStart(2, "0")}-${i.toString().padStart(2, "0")}`).isBefore(dayjs().subtract(1, 'day'))){
+      weekArray.push({ date: i, type: "prev" });
+      if (count === 6) {
+        monthArray.push(weekArray);
+        weekArray = [];
+        count = 0;
+      } else {
+        count++;
+      }
+    
+
+      continue;
+    }
+    if(dayjs(`${year}-${month.toString().padStart(2, "0")}-${i.toString().padStart(2, "0")}`).isAfter(dayjs().add(6, 'month'))){
+      weekArray.push({ date: i, type: "next" });
+      if (count === 6) {
+        monthArray.push(weekArray);
+        weekArray = [];
+        count = 0;
+      } else {
+        count++;
+      }
+    
+      continue;
+    }
     const dayFormat = `${year}${month.toString().padStart(2, "0")}${i.toString().padStart(2, "0")}`;
     const dayPosts = posts.filter(
       (post) =>
