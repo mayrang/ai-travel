@@ -69,7 +69,7 @@ interface Holiday {
   // Add other properties as needed
 }
 
-interface WeekDay {
+export interface WeekDay {
   date: number;
   dayFormat?: string;
   type: "prev" | "now" | "next";
@@ -95,14 +95,34 @@ export const setCalendarArray = (
 
   const allPosts: Post[] = [];
 
+  
   if (prevMonthLastDay !== 6) {
     for (let i = 0; i < prevMonthLastDay + 1; i++) {
       weekArray.unshift({ date: prevMonthLastDate - i, type: "prev" });
-      count = incrementCount(weekArray, monthArray, count);
+      if (count === 6) {
+        monthArray.push(weekArray);
+        weekArray = [];
+        count = 0;
+      } else {
+        count++;
+      }
     }
   }
 
+
   for (let i = 1; i <= currentMonthLastDate; i++) {
+    // if(dayjs(`${year}-${month.toString().padStart(2, "0")}-${i.toString().padStart(2, "0")}`).isBefore(dayjs())){
+    //   weekArray.unshift({ date: prevMonthLastDate - i, type: "prev" });
+    //   count = incrementCount(weekArray, monthArray, count);
+    //   console.log(dayjs(`${year}-${month.toString().padStart(2, "0")}-${i.toString().padStart(2, "0")}`).isBefore(dayjs()))
+
+    //   continue;
+    // }
+    // if(dayjs().add(6, 'month').isAfter(dayjs(`${year}-${month.toString().padStart(2, "0")}-${i.toString().padStart(2, "0")}`))){
+    //   weekArray.push({ date: i, type: "next" });
+    //   count = incrementCount(weekArray, monthArray, count);
+    //   continue;
+    // }
     const dayFormat = `${year}${month.toString().padStart(2, "0")}${i.toString().padStart(2, "0")}`;
     const dayPosts = posts.filter(
       (post) =>
@@ -140,27 +160,31 @@ export const setCalendarArray = (
 
     const holiday = holidays?.find((holiday) => holiday.locdate?.toString() === dayFormat);
     weekArray.push({ date: i, dayFormat, type: "now", posts: mapPosts, holiday });
-
-    count = incrementCount(weekArray, monthArray, count);
+    if (count === 6) {
+            monthArray.push(weekArray);
+            weekArray = [];
+            count = 0;
+          } else {
+            count++;
+          }
   }
 
   for (let i = 1; i < 7 - nextMonthFirstDay; i++) {
     weekArray.push({ date: i, type: "next" });
-    count = incrementCount(weekArray, monthArray, count);
+    if (count === 6) {
+      monthArray.push(weekArray);
+      weekArray = [];
+      count = 0;
+    } else {
+      count++;
+    }
   }
+
+
   return monthArray;
 };
 
-function incrementCount(weekArray: WeekDay[], monthArray: WeekDay[][], count: number): number {
-  if (count === 6) {
-    monthArray.push(weekArray);
-    weekArray = [];
-    count = 0;
-  } else {
-    count++;
-  }
-  return count;
-}
+
 
 // export const setCalendarArray = (year, month, holidays, posts) => {
 //   let monthArray = [];
