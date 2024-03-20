@@ -11,6 +11,7 @@ type Props = {
 };
 
 export default function Calendar({ month }: Props) {
+  console.log(month, "month");
   const dayArray = ["S", "M", "T", "W", "T", "F", "S"];
   return (
     <article className={styles.main}>

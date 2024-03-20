@@ -63,17 +63,20 @@ export const setCalendarArray = (
   let weekArray: WeekDay[] = [];
   let count = 0;
 
-  const nextMonthFirstDate = new Date(year, month, 1);
-  const currentMonthLastDate = new Date(year, month, 0).getDate();
-  const prevMonthLastDate = new Date(year, month - 1, 0).getDate();
-  const prevMonthLastDay = new Date(year, month - 1, 0).getDay();
-  const nextMonthFirstDay = nextMonthFirstDate.getDay();
+  let prevLastDate = new Date(year, month - 1, 0).getDate();
+
+  let prevLastDay = new Date(year, month - 1, 0).getDay();
+
+  //다음 날짜
+  const nextDay = new Date(year, month, 0).getDay();
+
+  const nextDate = new Date(year, month, 0).getDate();
 
   const allPosts: Post[] = [];
 
-  if (prevMonthLastDay !== 6) {
-    for (let i = 0; i < prevMonthLastDay + 1; i++) {
-      weekArray.unshift({ date: prevMonthLastDate - i, type: "prev" });
+  if (prevLastDay !== 6) {
+    for (let i = 0; i < prevLastDay + 1; i++) {
+      weekArray.unshift({ date: prevLastDate - i, type: "prev" });
       if (count === 6) {
         monthArray.push(weekArray);
         weekArray = [];
@@ -84,7 +87,7 @@ export const setCalendarArray = (
     }
   }
 
-  for (let i = 1; i <= currentMonthLastDate; i++) {
+  for (let i = 1; i <= nextDate; i++) {
     if (
       dayjs(
         `${year}-${month.toString().padStart(2, "0")}-${i
@@ -92,7 +95,7 @@ export const setCalendarArray = (
           .padStart(2, "0")}`
       ).isBefore(dayjs().subtract(1, "day"))
     ) {
-      weekArray.push({ date: i, type: "prev" });
+      weekArray.push({ date: i, type: "prevDate" });
       if (count === 6) {
         monthArray.push(weekArray);
         weekArray = [];
@@ -183,7 +186,7 @@ export const setCalendarArray = (
     }
   }
 
-  for (let i = 1; i < 7 - nextMonthFirstDay; i++) {
+  for (let i = 1; i < 7 - nextDay; i++) {
     weekArray.push({ date: i, type: "next" });
     if (count === 6) {
       monthArray.push(weekArray);
