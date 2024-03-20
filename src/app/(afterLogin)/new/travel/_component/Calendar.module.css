@@ -1,0 +1,31 @@
+.main {
+  width: 88%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 48px auto;
+}
+
+.monthTitle {
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 28px;
+}
+
+.monthSection {
+  display: grid;
+  margin-top: 19px;
+  width: 100%;
+  grid-template-columns: repeat(7, 1fr);
+}
+
+.day {
+  text-align: center;
+  color: #6c7072;
+  font-weight: 100;
+}
+
+.week {
+  display: grid;
+  width: 100%;
+}
