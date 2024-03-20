@@ -1,7 +1,7 @@
 import dayjs from "dayjs";
 
 export interface Post {
-  calendarId: number;
+  calendarId: string;
   startTime: Date | dayjs.Dayjs;
   endTime: Date | dayjs.Dayjs;
   start?: boolean;

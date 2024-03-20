@@ -1,11 +1,11 @@
 "use client";
 import { setCalendarArray } from "@/app/(afterLogin)/_lib/setCalendar";
-import { Holiday, WeekDay } from "@/model/calendar";
+import { Holiday, Post, WeekDay } from "@/model/calendar";
 import axios from "axios";
 import dayjs from "dayjs";
 import React, { useEffect, useState } from "react";
 
-export default function useCalendar() {
+export default function useCalendar(posts: Post[]) {
   const [calendar, setCalendar] = useState<
     { monthTitle: number; month: WeekDay[][] }[]
   >([]);
@@ -47,7 +47,7 @@ export default function useCalendar() {
         const mon = month > 12 ? month - 12 : month;
         const year = month > 12 ? dayjs().year() + 1 : dayjs().year();
         console.log(holidays, "holidays");
-        const monthArray = setCalendarArray(year, mon, holidays, []);
+        const monthArray = setCalendarArray(year, mon, holidays, posts);
         return { monthTitle: month, month: monthArray };
       });
 
@@ -55,7 +55,7 @@ export default function useCalendar() {
     }
 
     fetchData();
-  }, []);
+  }, [JSON.stringify(posts)]);
 
   return calendar;
 }

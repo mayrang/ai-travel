@@ -132,7 +132,7 @@ export const setCalendarArray = (
         dayjs(post.startTime).format("YYYYMMDD") <= dayFormat &&
         dayFormat <= dayjs(post.endTime).format("YYYYMMDD")
     );
-
+    //console.log("dayFormat", dayFormat, posts);
     let mapPosts: Post[] = [];
 
     for (const post of dayPosts) {
