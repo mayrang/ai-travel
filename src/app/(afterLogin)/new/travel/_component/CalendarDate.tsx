@@ -1,3 +1,4 @@
+"use client";
 import { WeekDay } from "@/model/calendar";
 import React from "react";
 import styles from "./CalendarDate.module.css";
@@ -13,7 +14,8 @@ export default function CalendarDate({ date }: Props) {
         className={cls(
           date.holiday?.isHoliday && styles.holiday,
           (date.type === "prev" || date.type === "next") && styles.none,
-          date.type === "prevDate" && styles.disabled
+          (date.type === "prevDate" || date.type === "nextDate") &&
+            styles.disabled
         )}
       >
         {date.date}

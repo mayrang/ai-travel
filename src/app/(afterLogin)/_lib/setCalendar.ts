@@ -113,7 +113,7 @@ export const setCalendarArray = (
           .padStart(2, "0")}`
       ).isAfter(dayjs().add(6, "month"))
     ) {
-      weekArray.push({ date: i, type: "next" });
+      weekArray.push({ date: i, type: "nextDate" });
       if (count === 6) {
         monthArray.push(weekArray);
         weekArray = [];

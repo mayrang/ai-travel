@@ -20,7 +20,7 @@ export interface Holiday {
 export interface WeekDay {
   date: number;
   dayFormat?: string;
-  type: "prev" | "now" | "next" | "prevDate";
+  type: "prev" | "now" | "next" | "prevDate" | "nextDate";
   posts?: Post[];
   holiday?: Holiday;
 }
