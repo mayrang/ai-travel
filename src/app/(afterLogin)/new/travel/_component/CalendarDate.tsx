@@ -12,8 +12,15 @@ type Props = {
 };
 
 export default function CalendarDate({ date }: Props) {
-  const { startDate, endDate, setStartDate, setEndDate, reset, setPost } =
-    useDateStore();
+  const {
+    startDate,
+    endDate,
+    setStartDate,
+    setEndDate,
+    reset,
+    setPost,
+    setDate,
+  } = useDateStore();
 
   const handleDate = () => {
     // console.log("check", startDate, endDate );
@@ -23,20 +30,17 @@ export default function CalendarDate({ date }: Props) {
     // endDate만 있으면 뭔가 잘못된거 : reset하고 startDate 설정
     // startDate, endDate 둘 다 존재하는 경우 : reset하고 startDate 설정
     if (startDate && endDate) {
-      reset();
-      setStartDate(dateFormat);
+      setDate(dateFormat, null);
     } else if (!startDate && !endDate) {
       setStartDate(dateFormat);
     } else if (startDate && !endDate) {
       if (dayjs(dateFormat).isSameOrBefore(startDate)) {
-        reset();
-        setStartDate(dateFormat);
+        setDate(dateFormat, null);
       } else {
         setEndDate(dateFormat);
       }
     } else {
-      reset();
-      setStartDate(dateFormat);
+      setDate(dateFormat, null);
     }
   };
 

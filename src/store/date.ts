@@ -8,6 +8,7 @@ type DateStore = {
   setPost: (post: Post[]) => void;
   setStartDate: (date: Date) => void;
   setEndDate: (date: Date) => void;
+  setDate: (startDate: Date | null, endDate: Date | null) => void;
   reset: () => void;
 };
 
@@ -23,6 +24,9 @@ export const useDateStore = create<DateStore>((set) => ({
   },
   setEndDate: (date: Date) => {
     set({ endDate: date });
+  },
+  setDate: (startDate, endDate) => {
+    set({ startDate, endDate });
   },
   reset: () => {
     set({ startDate: null, endDate: null, post: [] });
