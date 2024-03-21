@@ -8,7 +8,7 @@ type Props = {
 export default function AfterLoginLayout({ children }: Props) {
   console.log("home");
   return (
-    <main>
+    <main className="relative">
       <MobileHeader />
       {children}
       <div id="menu"></div>

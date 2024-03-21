@@ -4,7 +4,8 @@
 
 @font-face {
   font-family: "NPSfontBold";
-  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2310@1.0/NPSfontBold.woff2") format("woff2");
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2310@1.0/NPSfontBold.woff2")
+    format("woff2");
 
   font-style: normal;
 }
@@ -36,31 +37,37 @@ html {
 
   touch-action: none;
 }
+.desktop {
+  max-height: 100vh; /* 변경된 부분 */
+  overflow-y: auto; /* 변경된 부분 */
+}
 * {
   box-sizing: border-box;
 }
 @media screen and (min-width: 480px) {
   .body {
     width: 100dvw;
-    width: 100dvh;
+    height: 100dvh;
     background-color: #fff;
     z-index: 10;
+    overflow-y: auto;
   }
-  .desktop {
-    position: fixed;
-    z-index: 11;
-    top: 50%;
-    left: 50%;
 
-    transform: translate(-50%, -50%);
-    overflow-x: hidden;
-    /* overflow: auto; 내용이 넘칠 경우 스크롤바를 표시 */
-    width: 480px;
-    height: 932px;
-    max-width: 480px;
-    height: 932px;
-    max-height: 95dvh;
-    margin: auto;
+  .desktop {
+    position: relative;
+    overflow-y: auto;
+    background-color: #fff;
+    width: 100%;
+    max-width: 420px;
+    margin-top: 0;
+    margin: 0 auto 0;
+
+    max-height: 100vh; /* 변경된 부분 */
+    overflow-y: auto; /* 변경된 부분 */
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  }
+
+  .desktop > * {
+    position: relative;
   }
 }
