@@ -7,16 +7,26 @@ import { useDateStore } from "@/store/date";
 import styles from "./SelectDate.module.css";
 
 export default function SelectDate() {
+  const dayArray = ["일", "월", "화", "수", "목", "금", "토"];
   const { post, startDate, endDate } = useDateStore();
   console.log("post", post);
   const calendar = useCalendar(post);
   console.log("calendar", calendar);
   return (
     <main className={styles.main}>
-      <h2 className={styles.title}>여행 날짜 선택</h2>
-      {calendar.map((month) => (
-        <Calendar month={month} key={month.monthTitle} />
-      ))}
+      <div className={styles.dayContainer}>
+        {dayArray.map((day) => (
+          <div className={styles.day} key={day}>
+            {day}
+          </div>
+        ))}
+      </div>
+      <div className={styles.bar}></div>
+      <div className={styles.monthsContainer}>
+        {calendar.map((month) => (
+          <Calendar month={month} key={month.monthTitle} />
+        ))}
+      </div>
     </main>
   );
 }
