@@ -10,7 +10,7 @@ export default function SelectDate() {
   const dayArray = ["일", "월", "화", "수", "목", "금", "토"];
   const { post, startDate, endDate } = useDateStore();
   console.log("post", post);
-  const calendar = useCalendar(post);
+  const calendar = useCalendar(post, startDate, endDate);
   console.log("calendar", calendar);
   return (
     <main className={styles.main}>

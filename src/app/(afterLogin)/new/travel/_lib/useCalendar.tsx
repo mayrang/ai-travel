@@ -5,7 +5,7 @@ import axios from "axios";
 import dayjs from "dayjs";
 import React, { useEffect, useState } from "react";
 
-export default function useCalendar(posts: Post[]) {
+export default function useCalendar(posts: Post[], startDate: Date | null, endDate: Date | null) {
   const [calendar, setCalendar] = useState<{ monthTitle: number; month: WeekDay[][] }[]>([]);
 
   useEffect(() => {
@@ -38,18 +38,31 @@ export default function useCalendar(posts: Post[]) {
       const updatedCalendar = holidaysArray.map((holidays, index) => {
         const month = currentMonth + index;
         const mon = month > 12 ? month - 12 : month;
-
-        const year = month > 12 ? dayjs().year() + 1 : dayjs().year();
-        console.log(holidays, "holidays");
-        const monthArray = setCalendarArray(year, mon, holidays, posts);
-        return { monthTitle: month, month: monthArray };
+        console.log("hi", startDate, dayjs(startDate).get("month") + 1, currentMonth);
+        if (
+          (startDate && dayjs(startDate).get("month") + 1 !== mon) ||
+          (endDate && dayjs(endDate).get("month") + 1 !== mon)
+        ) {
+          const currentCalendar = calendar.find((item) => item.monthTitle === mon) as {
+            monthTitle: number;
+            month: WeekDay[][];
+          };
+          return { ...currentCalendar };
+        } else {
+          console.log(month, "check");
+          const mon = month > 12 ? month - 12 : month;
+          const year = month > 12 ? dayjs().year() + 1 : dayjs().year();
+          console.log(holidays, "holidays");
+          const monthArray = setCalendarArray(year, mon, holidays, posts);
+          return { monthTitle: month, month: monthArray };
+        }
       });
 
       setCalendar(updatedCalendar);
     }
 
     fetchData();
-  }, [JSON.stringify(posts)]);
+  }, [JSON.stringify(posts), startDate, endDate]);
 
   return calendar;
 }
