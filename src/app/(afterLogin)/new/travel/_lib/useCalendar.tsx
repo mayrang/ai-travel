@@ -6,9 +6,7 @@ import dayjs from "dayjs";
 import React, { useEffect, useState } from "react";
 
 export default function useCalendar(posts: Post[]) {
-  const [calendar, setCalendar] = useState<
-    { monthTitle: number; month: WeekDay[][] }[]
-  >([]);
+  const [calendar, setCalendar] = useState<{ monthTitle: number; month: WeekDay[][] }[]>([]);
 
   useEffect(() => {
     const sixRateMonth = dayjs().add(6, "month").month() + 1;
@@ -18,9 +16,7 @@ export default function useCalendar(posts: Post[]) {
       const response = await axios.get(
         `http://apis.data.go.kr/B090041/openapi/service/SpcdeInfoService/getRestDeInfo?solYear=${year}&solMonth=${month
           .toString()
-          .padStart(2, "0")}&ServiceKey=${
-          process.env.NEXT_PUBLIC_HOLIDAY_API_KEY
-        }`
+          .padStart(2, "0")}&ServiceKey=${process.env.NEXT_PUBLIC_HOLIDAY_API_KEY}`
       );
       let result = response.data.response?.body?.items?.item || [];
       if (typeof result === "object") {
@@ -30,10 +26,7 @@ export default function useCalendar(posts: Post[]) {
     }
 
     async function fetchData() {
-      const monthsToAdd = Array.from(
-        { length: sixRateMonth - currentMonth + 1 },
-        (_, index) => currentMonth + index
-      );
+      const monthsToAdd = Array.from({ length: sixRateMonth - currentMonth + 1 }, (_, index) => currentMonth + index);
 
       const promises = monthsToAdd.map((month) => {
         const mon = month > 12 ? month - 12 : month;
@@ -45,6 +38,7 @@ export default function useCalendar(posts: Post[]) {
       const updatedCalendar = holidaysArray.map((holidays, index) => {
         const month = currentMonth + index;
         const mon = month > 12 ? month - 12 : month;
+
         const year = month > 12 ? dayjs().year() + 1 : dayjs().year();
         console.log(holidays, "holidays");
         const monthArray = setCalendarArray(year, mon, holidays, posts);

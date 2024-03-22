@@ -35,7 +35,7 @@
 
 @media screen and (min-width: 420px) {
   .dayContainer {
-    width: calc(420px * 0.98);
+    width: 420px;
   }
   .bar {
     width: 420px;
