@@ -1,12 +1,15 @@
 "use client";
 import { useAddPageStore } from "@/store/AddPage";
+import { useDateStore } from "@/store/date";
 import React from "react";
 
 export default function AddPageHeaderButton() {
   const { setPage, page } = useAddPageStore();
+  const { setDate, setPost } = useDateStore();
   const handlePage = () => {
     if (page === "date") {
-      setPage("event");
+      setDate(null, null);
+      setPost([]);
     } else if (page === "event") {
       setPage("detail");
     }
@@ -14,5 +17,10 @@ export default function AddPageHeaderButton() {
   if (page === "detail") {
     return null;
   }
-  return <button onClick={handlePage}>다음</button>;
+  if (page === "date") {
+    return <button onClick={handlePage}>초기화</button>;
+  }
+  if (page === "event") {
+    return <button onClick={handlePage}>다음</button>;
+  }
 }

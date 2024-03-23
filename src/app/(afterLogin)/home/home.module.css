@@ -21,7 +21,7 @@
   border-radius: 48px;
 }
 
-@media screen and (min-width: 420px) {
+@media screen and (min-width: 430px) {
   .addButton {
     position: fixed;
     display: flex;
@@ -32,7 +32,7 @@
     gap: 24px;
     width: 160px;
     bottom: 36px;
-    left: calc((100dvw - 420px) / 2 + 236px);
+    left: calc((100dvw - 430px) / 2 + 236px);
     font-style: normal;
     font-weight: 500;
     font-size: 16px;

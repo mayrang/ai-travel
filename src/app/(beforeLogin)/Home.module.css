@@ -8,7 +8,7 @@
   overflow-y: inherit;
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
-  box-sizing: content-box;
+  box-sizing: border-box;
 }
 
 .main::-webkit-scrollbar {
@@ -58,7 +58,7 @@
   font-size: 24px;
 }
 
-@media screen and (min-width: 420px) {
+@media screen and (min-width: 430px) {
   .startButton {
     width: 315px;
   }
