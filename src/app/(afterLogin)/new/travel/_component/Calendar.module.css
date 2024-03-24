@@ -15,10 +15,16 @@
 }
 
 .monthSection {
+  gap: 4px;
+}
+
+.weekSection {
   display: grid;
   margin-top: 14px;
   width: 100%;
   grid-template-columns: repeat(7, 1fr);
+
+  height: 1fr;
 }
 
 .day {

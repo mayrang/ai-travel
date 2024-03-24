@@ -1,10 +1,31 @@
 .date {
   text-align: center;
-  padding: 16px;
-
+  display: flex;
+  align-items: center;
+  justify-content: center;
   min-height: 40px;
 }
 
+.startDate {
+  background-image: linear-gradient(90deg, #fff 50%, #c9f0ff 0);
+}
+
+.dateRange {
+  background-color: #c9f0ff;
+}
+
+.endDate {
+  background-image: linear-gradient(270deg, #fff 50%, #c9f0ff 0);
+}
+
+.date > div {
+  width: 40px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
 .holiday {
   color: red;
 }
@@ -13,10 +34,12 @@
   color: #72777a;
 }
 
-.none {
+.none > span {
   display: none;
 }
 
-.checked {
-  color: blue;
+.selected {
+  border-radius: 50%;
+  color: #fff;
+  background-color: #48a7f8;
 }

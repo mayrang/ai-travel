@@ -73,22 +73,43 @@ export default function CalendarDate({ date }: Props) {
       ]);
     }
   };
-
+  console.log("dayformat", dayjs(date.dayFormat, "YYYYMMDD"));
   return (
     <button
       disabled={date.type === "prev" || date.type === "next" || date.type === "prevDate" || date.type === "nextDate"}
       onClick={handleDate}
-      className={styles.date}
+      className={cls(
+        styles.date,
+        date.posts &&
+          date.posts.length > 0 &&
+          dayjs(date.dayFormat, "YYYYMMDD").isSame(date.posts[0].startTime, "day") &&
+          !dayjs(date.posts[0].startTime).isSame(date.posts[0].endTime, "day") &&
+          styles.startDate,
+        date.posts &&
+          date.posts.length > 0 &&
+          !dayjs(date.dayFormat, "YYYYMMDD").isSame(date.posts[0].startTime, "day") &&
+          !dayjs(date.dayFormat, "YYYYMMDD").isSame(date.posts[0].endTime, "day") &&
+          styles.dateRange,
+        date.posts &&
+          date.posts.length > 0 &&
+          dayjs(date.dayFormat, "YYYYMMDD").isSame(date.posts[0].endTime, "day") &&
+          !dayjs(date.posts[0].startTime).isSame(date.posts[0].endTime, "day") &&
+          styles.endDate
+      )}
     >
       <div
         className={cls(
           date.holiday?.isHoliday && styles.holiday,
           (date.type === "prev" || date.type === "next") && styles.none,
           (date.type === "prevDate" || date.type === "nextDate") && styles.disabled,
-          date.posts && date.posts.length > 0 && styles.checked
+          date.posts &&
+            date.posts.length > 0 &&
+            (dayjs(date.dayFormat, "YYYYMMDD").isSame(date.posts[0].startTime, "day") ||
+              dayjs(date.dayFormat, "YYYYMMDD").isSame(date.posts[0].endTime, "day")) &&
+            styles.selected
         )}
       >
-        {date.date}
+        <span>{date.date}</span>
       </div>
     </button>
   );

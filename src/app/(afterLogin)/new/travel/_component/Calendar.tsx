@@ -21,11 +21,11 @@ export default function Calendar({ month }: Props) {
       </h3>
       <section className={styles.monthSection}>
         {month.month.map((week, index) => (
-          <Fragment key={`${month.monthTitle} ${index}`}>
+          <div className={styles.weekSection} key={`${month.monthTitle} ${index}`}>
             {week.map((date) => (
               <CalendarDate date={date} />
             ))}
-          </Fragment>
+          </div>
         ))}
       </section>
     </article>
