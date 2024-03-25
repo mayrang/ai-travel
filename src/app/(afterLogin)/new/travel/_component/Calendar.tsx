@@ -21,9 +21,9 @@ export default function Calendar({ month }: Props) {
       </h3>
       <section className={styles.monthSection}>
         {month.month.map((week, index) => (
-          <div className={styles.weekSection} key={`${month.monthTitle} ${index}`}>
+          <div className={styles.weekSection} key={month.monthTitle * 10 + index}>
             {week.map((date) => (
-              <CalendarDate date={date} />
+              <CalendarDate key={date.date} date={date} />
             ))}
           </div>
         ))}

@@ -3,7 +3,6 @@ import { QueryFunction } from "@tanstack/query-core";
 import axios from "axios";
 export const getHoliday = async (year: number, month: number) => {
   try {
-    console.log("year", year, month);
     const response = await axios.get(
       `http://apis.data.go.kr/B090041/openapi/service/SpcdeInfoService/getRestDeInfo?solYear=${year}&solMonth=${month
         .toString()
@@ -14,7 +13,7 @@ export const getHoliday = async (year: number, month: number) => {
     if (!Array.isArray(result)) {
       result = [result];
     }
-    console.log(result, "result");
+
     return result || [];
   } catch (err) {
     console.log("holiday error", err);

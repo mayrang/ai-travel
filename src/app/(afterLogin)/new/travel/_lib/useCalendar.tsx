@@ -34,21 +34,18 @@ export default function useCalendar(posts: Post[], startDate: Date | null, endDa
   });
   const queryResults: UseQueryResult<Holiday[]>[] = useQueries({ queries });
   const queryResultStatus = queryResults.every((result) => !result.isLoading);
-
   const queryResultError = queryResults.some((result) => result.error);
 
   useEffect(() => {
-    console.log("use effect", posts);
     if (queryResultStatus && !queryResultError) {
       const holidaysArray = queryResults.map((item) => item.data || []);
-      console.log("holidayarray", holidaysArray);
+
       const updatedCalendar = holidaysArray.map((holidays, index) => {
-        console.log("holiday", holidays);
         const month = currentMonth + index;
         const mon = month > 12 ? month - 12 : month;
 
         const year = month > 12 ? dayjs().year() + 1 : dayjs().year();
-        console.log(holidays, "holidays");
+
         const monthArray = setCalendarArray(year, mon, holidays, posts);
         return { monthTitle: month, month: monthArray };
       });
@@ -56,14 +53,13 @@ export default function useCalendar(posts: Post[], startDate: Date | null, endDa
       setCalendar(updatedCalendar);
     } else {
       const holidaysArray = Array.from({ length }, () => []);
-      console.log("holidayarray", holidaysArray);
+
       const updatedCalendar = holidaysArray.map((holidays, index) => {
-        console.log("holiday", holidays);
         const month = currentMonth + index;
         const mon = month > 12 ? month - 12 : month;
 
         const year = month > 12 ? dayjs().year() + 1 : dayjs().year();
-        console.log(holidays, "holidays");
+
         const monthArray = setCalendarArray(year, mon, holidays, posts);
         return { monthTitle: month, month: monthArray };
       });

@@ -1,8 +1,11 @@
 import React from "react";
 import SelectDate from "./_component/SelectDate";
+import NewTravel from "./_component/NewTravel";
 
 export default function NewTravelPage() {
-  return <div>
-    <SelectDate />
-  </div>;
+  return (
+    <div>
+      <NewTravel />
+    </div>
+  );
 }

@@ -90,3 +90,8 @@ html {
 ::-webkit-scrollbar-thumb:hover {
   background-color: #909090;
 }
+
+.gm-directions,
+.gm-directions div {
+  display: none !important;
+}

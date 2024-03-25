@@ -73,7 +73,6 @@ export default function CalendarDate({ date }: Props) {
       ]);
     }
   };
-  console.log("dayformat", dayjs(date.dayFormat, "YYYYMMDD"));
   return (
     <button
       disabled={date.type === "prev" || date.type === "next" || date.type === "prevDate" || date.type === "nextDate"}
