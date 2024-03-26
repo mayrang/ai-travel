@@ -1,5 +1,5 @@
 type Props = {
-  page: "date" | "event" | "detail";
+  page: "title" | "date" | "event" | "detail";
 };
 
 export default function NewHeaderTitle({ page }: Props) {

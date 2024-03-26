@@ -17,10 +17,14 @@ export default function AddPageHeaderButton() {
   if (page === "detail") {
     return null;
   }
+  if (page === "title") {
+    return null;
+  }
   if (page === "date") {
     return <button onClick={handlePage}>초기화</button>;
   }
   if (page === "event") {
     return <button onClick={handlePage}>다음</button>;
   }
+  return null;
 }
