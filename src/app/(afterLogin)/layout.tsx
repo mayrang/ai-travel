@@ -14,6 +14,7 @@ export default function AfterLoginLayout({ children }: Props) {
         <MobileHeader />
         {children}
         <div id="menu"></div>
+        <div id="bototm-modal"></div>
       </RQProvider>
     </main>
   );
