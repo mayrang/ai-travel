@@ -1,23 +1,17 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import url("https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css");
 
 /* @font-face {
-  font-family: "NPSfontBold";
-  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2310@1.0/NPSfontBold.woff2")
-    format("woff2");
-  font-style: normal;
-} */
-
-@font-face {
   font-family: "KyoboHand";
   src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@1.0/KyoboHand.woff")
     format("woff");
   font-weight: normal;
   font-style: normal;
-}
+} */
 :root {
-  font-family: "KyoboHand";
+  font-family: "NanumSquare";
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
