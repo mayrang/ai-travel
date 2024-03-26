@@ -1,7 +1,8 @@
 "use client";
-import React, { useState } from "react";
+import React, { MouseEventHandler, useState } from "react";
 import styles from "./SelectPlace.module.css";
 import BottomModal from "@/app/_component/BottomModal";
+import SearchInput from "@/app/_component/SearchInput";
 export default function SelectPlace() {
   const [openModal, setOpenModal] = useState(false);
 
@@ -9,7 +10,9 @@ export default function SelectPlace() {
     setOpenModal(true);
   };
 
-  const handleClose = () => {
+  const handleClose: MouseEventHandler<HTMLDivElement> = (e) => {
+    e.stopPropagation();
+    if (e.target !== e.currentTarget) return;
     setOpenModal(false);
   };
   //   const handleText = async () => {
@@ -32,7 +35,7 @@ export default function SelectPlace() {
       </article>
       {openModal && (
         <BottomModal handleClose={handleClose}>
-          <div>bottom modal</div>
+          <SearchInput />
         </BottomModal>
       )}
     </>

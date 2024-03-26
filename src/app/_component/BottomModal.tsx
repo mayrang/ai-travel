@@ -5,7 +5,7 @@ import styles from "./BottomModal.module.css";
 
 type Props = {
   children: React.ReactNode;
-  handleClose: () => void;
+  handleClose: (e: React.MouseEvent<HTMLDivElement>) => void;
 };
 
 export default function BottomModal({ children, handleClose }: Props) {
