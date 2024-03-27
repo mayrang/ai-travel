@@ -14,7 +14,7 @@ type Props = {
 export default function SearchCity({ setOpenModal }: Props) {
   const [value, setValue] = useState("");
   const { appendCities } = useNewTravelStore();
-  const debouncedValue = useDebounce(value, 2000);
+  const debouncedValue = useDebounce(value, 1000);
   const { data, isFetching, isLoading, isPending } = useQuery({
     queryKey: ["search", "city", debouncedValue],
     queryFn: getSearchCity,

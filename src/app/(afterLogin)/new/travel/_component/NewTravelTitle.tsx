@@ -19,7 +19,7 @@ export default function NewTravelTitle() {
           )}
         ></div>
       </div>
-      {step === 1 && <SelectPlace />}
+      {step === 1 && <SelectPlace setStep={setStep} />}
     </section>
   );
 }
