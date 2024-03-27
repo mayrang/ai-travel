@@ -23,22 +23,33 @@
   left: 0;
   background-color: #23c16b;
   height: 4px;
-
-  border-radius: 100px;
 }
 
 .step1 {
   width: 25%;
+  border-top-left-radius: 100px;
+  border-bottom-left-radius: 100px;
 }
 
 .step2 {
-  width: 50%;
+  width: 25%;
+  position: absolute;
+  top: 0;
+  left: 25%;
 }
 
 .step3 {
-  width: 75%;
+  width: 25%;
+  position: absolute;
+  top: 0;
+  left: 50%;
 }
 
 .step4 {
-  width: 100%;
+  width: 25%;
+  position: absolute;
+  top: 0;
+  left: 75%;
+  border-top-right-radius: 100px;
+  border-bottom-right-radius: 100px;
 }
