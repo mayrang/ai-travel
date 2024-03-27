@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 
 export async function GET(req: Request, res: Response) {
-  const { searchParams } = new URL(req.url, "http://localhost:3000");
+  const { searchParams } = new URL(req.url, process.env.BASE_URL);
   const query = searchParams.get("query");
 
   try {

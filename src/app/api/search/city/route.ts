@@ -12,10 +12,11 @@ curl https://api.openai.com/v1/chat/completions \
 */
 
 export async function GET(req: Request, res: Response) {
-  const { searchParams } = new URL(req.url, "http://localhost:3000");
+  const { searchParams } = new URL(req.url, process.env.BASE_URL);
   const query = searchParams.get("query");
 
   try {
+    console.log("api check");
     const response = await fetch("https://api.openai.com/v1/chat/completions", {
       method: "POST",
       headers: {
@@ -28,16 +29,18 @@ export async function GET(req: Request, res: Response) {
           {
             role: "system",
             content: `
-                You're the one who finds a city similar to the one that users search for. Proceed in the following order.
+                You're a travel city recommendation. Proceed in the following order.
 
-                1. [search]: Please return the [event] entered by the user.
-                2. [city]: Give 5 cities with names similar to [event] in order of name relevance and similarity. However, if you judge that the similarity is too low, you only derive at least 1 result without having to print up to 5.  If there are additional cities with the same name, place them at the top.
+                1. [city]: Find a city with the same name as [event] entered by the user
+                2. [country]: Find the country to which [city] belongs
+                2. [city]: Please recommend 3 more cities where you can search for the same city as the one you searched and see the same kind of sightseeing that feels similar to that city. And those cities should be known to some extent.
                 3. [country]: Give [city] their corresponding countries in the same order as [city].
 
                     
                 Translate into Korean and Use the output in the following JSON format:
                 {
-                    search: [search],
+                    city:  [city],
+                    country:  [country]
                     result: [
                         city:  [city]
                         country:  [country]
@@ -62,7 +65,7 @@ export async function GET(req: Request, res: Response) {
       }),
     });
     const data = await response.json();
-    console.log("data", data.choices[0].message);
+
     if (data.error) {
       throw new Error(data.error.message || "gpt error");
     }

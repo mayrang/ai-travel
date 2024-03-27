@@ -1,7 +1,13 @@
 "use client";
-import React from "react";
+import React, { ChangeEvent } from "react";
 import styles from "./SearchInput.module.css";
-export default function SearchInput() {
+
+type Props = {
+  value: string;
+  changeValue: (e: ChangeEvent<HTMLInputElement>) => void;
+};
+
+export default function SearchInput({ value, changeValue }: Props) {
   return (
     <div className={styles.container}>
       <svg
@@ -19,6 +25,8 @@ export default function SearchInput() {
         />
       </svg>
       <input
+        value={value}
+        onChange={changeValue}
         type="text"
         placeholder="도시를 검색해 보세요"
         className={styles.input}

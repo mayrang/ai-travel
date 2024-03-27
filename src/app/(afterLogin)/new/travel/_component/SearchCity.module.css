@@ -1,0 +1,53 @@
+.container {
+  padding: 16px;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+}
+
+.title {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 32px;
+  margin: 16px 0;
+
+  color: #090a0a;
+}
+
+.item {
+  padding: 12px 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  cursor: pointer;
+}
+
+.subTitle {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 22px;
+  margin: 16px 0;
+}
+
+.city {
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 20px;
+}
+
+.country {
+  font-size: 14px;
+  line-height: 14px;
+  color: #6c7072;
+}
+
+.loader {
+  padding-top: 36px;
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+}

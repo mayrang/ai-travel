@@ -8,5 +8,12 @@ export default {
       name: 'title',
       type: 'string',
     },
+    {
+      title: 'Cities',
+      name: 'cities',
+      type: 'array',
+      of: [{type: 'string'}],
+      validation: (Rule: any) => Rule.unique(),
+    },
   ],
 }
