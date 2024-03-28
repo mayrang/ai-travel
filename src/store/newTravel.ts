@@ -3,19 +3,24 @@ import { create } from "zustand";
 
 type NewTravelStore = {
   cities: string[];
-  headcount: number | null;
-  tags: string[] | null;
+  headcount: number;
+  themes: {
+    item: string;
+    color: string;
+  }[];
   appendCities: (city: string) => void;
   removeCities: (city: string) => void;
   setHeadcount: (headcount: number) => void;
-  setTags: (tags: string[]) => void;
+  appendThemes: (themes: { item: string; color: string }) => void;
+  resetThemes: () => void;
+  removeThemes: (theme: { item: string; color: string }) => void;
   reset: () => void;
 };
 
 export const useNewTravelStore = create<NewTravelStore>((set) => ({
   cities: [],
-  headcount: null,
-  tags: null,
+  headcount: 1,
+  themes: [],
   appendCities: (city) => {
     set((state) => ({ ...state, cities: [...state.cities, city] }));
   },
@@ -28,10 +33,19 @@ export const useNewTravelStore = create<NewTravelStore>((set) => ({
   setHeadcount: (headcount) => {
     set({ headcount });
   },
-  setTags: (tags) => {
-    set({ tags });
+  appendThemes: (theme: { item: string; color: string }) => {
+    set((state) => ({ ...state, themes: [...state.themes, theme] }));
+  },
+  removeThemes: (theme: { item: string; color: string }) => {
+    set((state) => ({
+      ...state,
+      themes: [...state.themes].filter((item) => item.item !== theme.item),
+    }));
+  },
+  resetThemes: () => {
+    set({ themes: [] });
   },
   reset: () => {
-    set({ cities: [], headcount: null, tags: null });
+    set({ cities: [], headcount: 1, themes: [] });
   },
 }));

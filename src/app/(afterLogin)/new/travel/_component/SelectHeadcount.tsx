@@ -8,16 +8,15 @@ import { useNewTravelStore } from "@/store/newTravel";
 
 export default function SelectHeadcount() {
   const { setStep } = useStepStore();
-  const { setHeadcount } = useNewTravelStore();
-  const [headcount, setHeadCount] = useState<number>(1);
-
+  const { headcount, setHeadcount } = useNewTravelStore();
   const handleNextStep = () => {
-    if (headcount > 1) {
+    if (headcount > 0) {
       setStep(3);
-      setHeadCount(headcount);
+      setHeadcount(headcount);
     }
     return;
   };
+
   return (
     <article className={styles.container}>
       <h2 className={styles.title}>여행 인원을 선택하세요!</h2>
@@ -29,7 +28,7 @@ export default function SelectHeadcount() {
         <label htmlFor="count" className={styles.countLabel}>
           여행 인원 수
         </label>
-        <Count count={headcount} setCount={setHeadCount} />
+        <Count />
         {headcount === 0 && (
           <InvalidMessage
             size={12}
@@ -39,7 +38,7 @@ export default function SelectHeadcount() {
       </div>
       {headcount > 0 && (
         <button onClick={handleNextStep} className={styles.nextButton}>
-          {headcount}명 &nbsp;&middot;&nbsp; 선택 완료
+          {headcount}명 &nbsp;&middot;&nbsp; 다음
         </button>
       )}
     </article>

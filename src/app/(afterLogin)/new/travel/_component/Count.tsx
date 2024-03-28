@@ -2,21 +2,20 @@
 import React, { ChangeEventHandler, MouseEventHandler, useState } from "react";
 import styles from "./Count.module.css";
 import cls from "classnames";
-type Props = {
-  count: number;
-  setCount: React.Dispatch<React.SetStateAction<number>>;
-};
-export default function Count({ count, setCount }: Props) {
+import { useNewTravelStore } from "@/store/newTravel";
+
+export default function Count() {
+  const { headcount, setHeadcount } = useNewTravelStore();
   const handleChange: ChangeEventHandler<HTMLInputElement> = (e) => {
     if (e.target.value === "") {
-      setCount(0);
+      setHeadcount(0);
       return;
     }
     if (parseInt(e.target.value) === 0) {
-      setCount(0);
+      setHeadcount(0);
       return;
     }
-    setCount(parseInt(e.target.value));
+    setHeadcount(parseInt(e.target.value));
   };
 
   const handleCountButton = (
@@ -24,20 +23,20 @@ export default function Count({ count, setCount }: Props) {
     value: "add" | "substract"
   ) => {
     if (value === "add") {
-      setCount((prev) => prev + 1);
+      setHeadcount(headcount + 1);
     } else if (value === "substract") {
-      if (count === 0) {
+      if (headcount === 0) {
         return;
       }
-      setCount((prev) => prev - 1);
+      setHeadcount(headcount - 1);
     }
   };
   return (
     <div className={styles.container}>
       <button
         onClick={(e) => handleCountButton(e, "substract")}
-        disabled={count === 0}
-        className={cls(count === 0 ? styles.disabled : styles.substract)}
+        disabled={headcount === 0}
+        className={cls(headcount === 0 ? styles.disabled : styles.substract)}
       >
         <svg
           width="24"
@@ -53,7 +52,7 @@ export default function Count({ count, setCount }: Props) {
         id="count"
         type="text"
         className={styles.countInput}
-        value={count.toString()}
+        value={headcount.toString()}
         onChange={handleChange}
       />
       <button

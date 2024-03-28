@@ -1,0 +1,15 @@
+export const THEME_LIST = [
+  { item: "가족", color: "blue" },
+  { item: "혼자", color: "blue" },
+  { item: "친구", color: "blue" },
+  { item: "단체", color: "blue" },
+  { item: "커풀", color: "blue" },
+  { item: "자연", color: "green" },
+  { item: "휴식", color: "green" },
+  { item: "축제", color: "green" },
+  { item: "액티비티", color: "green" },
+  { item: "스포츠 관람", color: "green" },
+  { item: "체험", color: "green" },
+  { item: "쇼핑", color: "green" },
+  { item: "유적지", color: "green" },
+];

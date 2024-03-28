@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import SelectPlace from "./SelectPlace";
 import SelectHeadcount from "./SelectHeadcount";
 import { useStepStore } from "@/store/step";
+import SelectTheme from "./SelectTheme";
 export default function NewTravelTitle() {
   const { step, setStep } = useStepStore();
 
@@ -49,6 +50,7 @@ export default function NewTravelTitle() {
       </div>
       {step === 1 && <SelectPlace />}
       {step === 2 && <SelectHeadcount />}
+      {step === 3 && <SelectTheme />}
       <button
         onClick={() => setStep(step === 4 ? 4 : ((step + 1) as 1 | 2 | 3 | 4))}
       >

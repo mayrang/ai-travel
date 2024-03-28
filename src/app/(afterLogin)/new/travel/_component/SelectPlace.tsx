@@ -87,7 +87,7 @@ export default function SelectPlace() {
         )}
         {cities.length > 0 && (
           <button onClick={handleNextStep} className={styles.nextButton}>
-            선택 완료
+            {cities.length}개 도시 선택&nbsp;&middot;&nbsp;다음
           </button>
         )}
       </article>
