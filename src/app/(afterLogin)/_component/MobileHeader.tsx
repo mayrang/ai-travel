@@ -17,7 +17,7 @@ export default function MobileHeader() {
   // console.log("header", setCalendarArray(2023 || dayjs().get("year"), 3 || dayjs().get("month") + 1, [], posts));
 
   useEffect(() => {
-    if (pathname !== "/add/travel") {
+    if (pathname !== "/new/travel") {
       reset();
     }
   }, [pathname]);

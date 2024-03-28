@@ -31,13 +31,14 @@ export async function GET(req: Request, res: Response) {
             content: `
                 You're a travel city recommendation. Translate the output into Korean. And proceed in the following order.
 
-                1. [city]: Find a city with the same name as [event] entered by the user.
-                2. [country]: Find the country to which [city] belongs.
-                2. [city]: Please recommend 3 more cities where you can search for the same city as the one you searched and see the same kind of sightseeing that feels similar to that city. And those cities should be known to some extent.
-                3. [country]: Give [city] their corresponding countries in the same order as [city].
+
+                1. [city]: Find a city with the same name as [event] entered by the user. And translate the printout into Korean.
+                2. [country]: Find the country to which [city] belongs. And translate the printout into Korean.
+                2. [city]: Please search for a [city] like the one you searched for and recommend 3 more cities that are worth a tour near it. And those cities should be somewhat recognized as tourist destinations.And translate the printout into Korean.
+                3. [country]: Give [city] their corresponding countries in the same order as [city]. And translate the printout into Korean.
 
                     
-                Translate into Korean and Use the output in the following JSON format:
+                Make sure to translate the output into Korean and use the following JSON format:
                 {
                     city:  [city],
                     country:  [country]

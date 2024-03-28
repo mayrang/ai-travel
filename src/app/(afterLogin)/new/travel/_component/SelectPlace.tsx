@@ -70,20 +70,24 @@ export default function SelectPlace() {
           </svg>
           도시 추가하기
         </button>
-        <h4 className={styles.selectedTitle}>추가한 도시</h4>
+
         {cities.length > 0 && (
-          <ul className={styles.list}>
-            {cities.map((city) => (
-              <li
-                onClick={(e) => handleRemoveCity(e, city)}
-                className={styles.item}
-                key={city}
-              >
-                <span className={styles.city}>{city.split(",")[0]}</span>
-                <span className={styles.country}>{city.split(",")[1]}</span>
-              </li>
-            ))}
-          </ul>
+          <>
+            <h4 className={styles.selectedTitle}>추가한 도시</h4>
+
+            <ul className={styles.list}>
+              {cities.map((city) => (
+                <li
+                  onClick={(e) => handleRemoveCity(e, city)}
+                  className={styles.item}
+                  key={city}
+                >
+                  <span className={styles.city}>{city.split(",")[0]}</span>
+                  <span className={styles.country}>{city.split(",")[1]}</span>
+                </li>
+              ))}
+            </ul>
+          </>
         )}
         {cities.length > 0 && (
           <button onClick={handleNextStep} className={styles.nextButton}>

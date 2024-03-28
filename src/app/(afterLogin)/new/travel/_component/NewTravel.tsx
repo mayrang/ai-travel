@@ -8,6 +8,7 @@ import NewTravelTitle from "./NewTravelTitle";
 
 export default function NewTravel() {
   const { page } = useAddPageStore();
+  console.log("page", page);
   if (page === "title") {
     return <NewTravelTitle />;
   }

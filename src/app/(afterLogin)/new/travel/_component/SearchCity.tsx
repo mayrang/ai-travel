@@ -60,8 +60,10 @@ export default function SearchCity({ setOpenModal }: Props) {
                 <span className={styles.country}>{data.country}</span>
               </li>
             )}
-            {data && data.result && (
-              <div className={styles.subTitle}>이런 여행지는 어떠신가요? </div>
+            {data && data.city && (
+              <div className={styles.subTitle}>
+                {data.city} 근처 도시는 어떠신가요?{" "}
+              </div>
             )}
             {data &&
               data.result &&

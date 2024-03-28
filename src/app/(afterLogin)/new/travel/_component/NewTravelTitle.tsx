@@ -7,9 +7,10 @@ import SelectPlace from "./SelectPlace";
 import SelectHeadcount from "./SelectHeadcount";
 import { useStepStore } from "@/store/step";
 import SelectTheme from "./SelectTheme";
+import { useAddPageStore } from "@/store/addPage";
 export default function NewTravelTitle() {
   const { step, setStep } = useStepStore();
-
+  const { setPage } = useAddPageStore();
   return (
     <section className={styles.container}>
       <div className={styles.progressBar}>
@@ -51,11 +52,7 @@ export default function NewTravelTitle() {
       {step === 1 && <SelectPlace />}
       {step === 2 && <SelectHeadcount />}
       {step === 3 && <SelectTheme />}
-      <button
-        onClick={() => setStep(step === 4 ? 4 : ((step + 1) as 1 | 2 | 3 | 4))}
-      >
-        스텝 테스트
-      </button>
+      <button onClick={() => setPage("date")}>스텝 테스트</button>
     </section>
   );
 }
