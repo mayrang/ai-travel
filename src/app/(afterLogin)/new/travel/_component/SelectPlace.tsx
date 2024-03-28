@@ -4,11 +4,10 @@ import styles from "./SelectPlace.module.css";
 import BottomModal from "@/app/_component/BottomModal";
 import SearchCity from "./SearchCity";
 import { useNewTravelStore } from "@/store/newTravel";
+import { useStepStore } from "@/store/step";
 
-type Props = {
-  setStep: React.Dispatch<React.SetStateAction<2 | 1 | 3 | 4>>;
-};
-export default function SelectPlace({ setStep }: Props) {
+export default function SelectPlace() {
+  const { setStep } = useStepStore();
   const [openModal, setOpenModal] = useState(false);
   const { cities, removeCities } = useNewTravelStore();
 

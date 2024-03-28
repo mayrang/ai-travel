@@ -6,7 +6,7 @@ import Calendar from "./Calendar";
 import { useDateStore } from "@/store/date";
 import styles from "./SelectDate.module.css";
 import "dayjs/locale/ko";
-import { useAddPageStore } from "@/store/AddPage";
+import { useAddPageStore } from "@/store/addPage";
 
 dayjs.locale("ko");
 
@@ -38,7 +38,8 @@ export default function SelectDate() {
       {startDate && endDate && (
         <div className={styles.buttonContainer}>
           <button onClick={clickNext} className={styles.nextButton}>
-            {dayjs(startDate).format("YYYY.MM.DD (dd)")} ~ {dayjs(endDate).format("YYYY.MM.DD (dd)")}
+            {dayjs(startDate).format("YYYY.MM.DD (dd)")} ~{" "}
+            {dayjs(endDate).format("YYYY.MM.DD (dd)")}
             &nbsp;&middot;&nbsp;
             {dayjs(endDate).diff(startDate, "day")}박
           </button>

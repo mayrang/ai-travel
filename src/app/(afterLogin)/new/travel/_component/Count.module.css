@@ -1,0 +1,32 @@
+.container {
+  display: flex;
+  gap: 6px;
+  height: 24px;
+  align-items: center;
+}
+.countInput {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+
+  width: 24px;
+  height: 24px;
+  text-align: center;
+
+  color: #090a0a;
+}
+
+.add > svg {
+  fill: #48a7f8;
+  stroke: #48a7f8;
+}
+
+.disabled > svg {
+  fill: #979c9e;
+  stroke: #979c9e;
+}
+
+.substract > svg {
+  fill: #48a7f8;
+  stroke: #48a7f8;
+}

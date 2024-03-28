@@ -1,5 +1,5 @@
 "use client";
-import { useAddPageStore } from "@/store/AddPage";
+import { useAddPageStore } from "@/store/addPage";
 import React from "react";
 import SelectDate from "./SelectDate";
 import NewEvent from "./NewEvent";

@@ -6,7 +6,7 @@ import MenuButton from "@/app/_component/MenuButton";
 import { usePathname } from "next/navigation";
 import dayjs from "dayjs";
 import { setCalendarArray, posts } from "../_lib/setCalendar";
-import { useAddPageStore } from "@/store/AddPage";
+import { useAddPageStore } from "@/store/addPage";
 import AddPageHeaderButton from "./AddPageHeaderButton";
 import AddPageBackButton from "./AddPageBackButton";
 import NewHeaderTitle from "./NewHeaderTitle";

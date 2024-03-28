@@ -4,8 +4,10 @@ import styles from "./NewTravelTitle.module.css";
 import cls from "classnames";
 import { motion } from "framer-motion";
 import SelectPlace from "./SelectPlace";
+import SelectHeadcount from "./SelectHeadcount";
+import { useStepStore } from "@/store/step";
 export default function NewTravelTitle() {
-  const [step, setStep] = useState<1 | 2 | 3 | 4>(1);
+  const { step, setStep } = useStepStore();
 
   return (
     <section className={styles.container}>
@@ -45,11 +47,10 @@ export default function NewTravelTitle() {
           ></motion.div>
         )}
       </div>
-      {step === 1 && <SelectPlace setStep={setStep} />}
+      {step === 1 && <SelectPlace />}
+      {step === 2 && <SelectHeadcount />}
       <button
-        onClick={() =>
-          setStep((prev) => (prev === 4 ? 4 : ((prev + 1) as 1 | 2 | 3 | 4)))
-        }
+        onClick={() => setStep(step === 4 ? 4 : ((step + 1) as 1 | 2 | 3 | 4))}
       >
         스텝 테스트
       </button>
