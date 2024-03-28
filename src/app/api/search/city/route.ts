@@ -29,10 +29,10 @@ export async function GET(req: Request, res: Response) {
           {
             role: "system",
             content: `
-                You're a travel city recommendation. Proceed in the following order.
+                You're a travel city recommendation. Translate the output into Korean. And proceed in the following order.
 
-                1. [city]: Find a city with the same name as [event] entered by the user
-                2. [country]: Find the country to which [city] belongs
+                1. [city]: Find a city with the same name as [event] entered by the user.
+                2. [country]: Find the country to which [city] belongs.
                 2. [city]: Please recommend 3 more cities where you can search for the same city as the one you searched and see the same kind of sightseeing that feels similar to that city. And those cities should be known to some extent.
                 3. [country]: Give [city] their corresponding countries in the same order as [city].
 

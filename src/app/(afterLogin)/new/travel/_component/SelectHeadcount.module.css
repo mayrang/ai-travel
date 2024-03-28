@@ -21,3 +21,23 @@
 .countContainer {
   padding: 32px 0;
 }
+
+.countLabel {
+  display: block;
+  font-size: 18px;
+  line-height: 24px;
+  margin-bottom: 12px;
+}
+
+.nextButton {
+  position: absolute;
+  margin: 0 auto;
+  left: 0;
+  right: 0;
+  bottom: 50px;
+  background: #23c16b;
+  border-radius: 48px;
+  width: 88%;
+  padding: 16px 0;
+  color: white;
+}
