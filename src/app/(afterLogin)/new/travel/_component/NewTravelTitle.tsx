@@ -54,7 +54,6 @@ export default function NewTravelTitle() {
       {step === 2 && <SelectHeadcount />}
       {step === 3 && <SelectTheme />}
       {step === 4 && <NewTitle />}
-      <button onClick={() => setStep(step === 4 ? step : ((step + 1) as 1 | 2 | 3 | 4))}>스텝 테스트</button>
     </section>
   );
 }

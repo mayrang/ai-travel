@@ -19,7 +19,7 @@ export default function NewTitle() {
   };
   return (
     <article className={styles.container}>
-      <h2 className={styles.title}>나만의 여행 제목을 만들어보세요!</h2>
+      <h2 className={styles.title}>여행 제목을 만들어보세요!</h2>
       <div className={styles.description}>
         이번 여행에 이름을 붙이고 싶다면 자유롭게 제목을 입력해주세요. 입력하지 않을 경우, 우리가 임의로 제목을 정할
         거에요.
