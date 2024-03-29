@@ -7,6 +7,7 @@ import { useDateStore } from "@/store/date";
 import styles from "./SelectDate.module.css";
 import "dayjs/locale/ko";
 import { useAddPageStore } from "@/store/addPage";
+import { useNewTravelStore } from "@/store/newTravel";
 
 dayjs.locale("ko");
 
@@ -14,10 +15,15 @@ export default function SelectDate() {
   const dayArray = ["일", "월", "화", "수", "목", "금", "토"];
   const { post, startDate, endDate } = useDateStore();
   const { setPage } = useAddPageStore();
+  const { setDate } = useNewTravelStore();
   const calendar = useCalendar(post, startDate, endDate);
 
   const clickNext = () => {
-    setPage("event");
+    if (startDate && endDate) {
+      setDate({ startDate, endDate });
+      setPage("event");
+    }
+    return;
   };
 
   return (
@@ -38,8 +44,7 @@ export default function SelectDate() {
       {startDate && endDate && (
         <div className={styles.buttonContainer}>
           <button onClick={clickNext} className={styles.nextButton}>
-            {dayjs(startDate).format("YYYY.MM.DD (dd)")} ~{" "}
-            {dayjs(endDate).format("YYYY.MM.DD (dd)")}
+            {dayjs(startDate).format("YYYY.MM.DD (dd)")} ~ {dayjs(endDate).format("YYYY.MM.DD (dd)")}
             &nbsp;&middot;&nbsp;
             {dayjs(endDate).diff(startDate, "day")}박
           </button>

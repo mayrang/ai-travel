@@ -9,9 +9,11 @@ type NewTravelStore = {
     color: string;
   }[];
   title: string;
+  date: { startDate: Date; endDate: Date } | null;
   setTitle: (title: string) => void;
   appendCities: (city: string) => void;
   removeCities: (city: string) => void;
+  setDate: (date: { startDate: Date; endDate: Date }) => void;
   setHeadcount: (headcount: number) => void;
   appendThemes: (themes: { item: string; color: string }) => void;
   resetThemes: () => void;
@@ -24,6 +26,10 @@ export const useNewTravelStore = create<NewTravelStore>((set) => ({
   headcount: 1,
   themes: [],
   title: "",
+  date: null,
+  setDate: (date: { startDate: Date; endDate: Date }) => {
+    set({ date });
+  },
   setTitle: (value: string) => {
     set({ title: value });
   },
