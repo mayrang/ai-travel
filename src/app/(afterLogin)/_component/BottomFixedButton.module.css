@@ -1,0 +1,18 @@
+.button {
+  position: fixed;
+  margin: 0 auto;
+  left: 0;
+  right: 0;
+  bottom: 50px;
+  background: #23c16b;
+  border-radius: 48px;
+  width: 88%;
+  padding: 16px 0;
+  color: white;
+}
+
+@media screen and (min-width: 430px) {
+  .button {
+    max-width: calc(430px * 0.88);
+  }
+}

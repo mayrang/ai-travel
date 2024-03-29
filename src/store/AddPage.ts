@@ -7,7 +7,7 @@ type AddPageStore = {
 };
 
 export const useAddPageStore = create<AddPageStore>((set) => ({
-  page: "date",
+  page: "title",
   setPage: (page: "title" | "date" | "event" | "detail") => {
     set({ page });
   },

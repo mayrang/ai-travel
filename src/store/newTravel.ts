@@ -8,6 +8,8 @@ type NewTravelStore = {
     item: string;
     color: string;
   }[];
+  title: string;
+  setTitle: (title: string) => void;
   appendCities: (city: string) => void;
   removeCities: (city: string) => void;
   setHeadcount: (headcount: number) => void;
@@ -21,6 +23,10 @@ export const useNewTravelStore = create<NewTravelStore>((set) => ({
   cities: [],
   headcount: 1,
   themes: [],
+  title: "",
+  setTitle: (value: string) => {
+    set({ title: value });
+  },
   appendCities: (city) => {
     set((state) => ({ ...state, cities: [...state.cities, city] }));
   },
@@ -46,6 +52,6 @@ export const useNewTravelStore = create<NewTravelStore>((set) => ({
     set({ themes: [] });
   },
   reset: () => {
-    set({ cities: [], headcount: 1, themes: [] });
+    set({ cities: [], headcount: 1, themes: [], title: "" });
   },
 }));

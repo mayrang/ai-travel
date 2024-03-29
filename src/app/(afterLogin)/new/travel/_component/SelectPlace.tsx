@@ -5,6 +5,7 @@ import BottomModal from "@/app/_component/BottomModal";
 import SearchCity from "./SearchCity";
 import { useNewTravelStore } from "@/store/newTravel";
 import { useStepStore } from "@/store/step";
+import BottomFixedButton from "@/app/(afterLogin)/_component/BottomFixedButton";
 
 export default function SelectPlace() {
   const { setStep } = useStepStore();
@@ -31,10 +32,7 @@ export default function SelectPlace() {
     setOpenModal(false);
   };
 
-  const handleRemoveCity = (
-    _: React.MouseEvent<HTMLLIElement>,
-    city: string
-  ) => {
+  const handleRemoveCity = (_: React.MouseEvent<HTMLLIElement>, city: string) => {
     removeCities(city);
   };
 
@@ -42,17 +40,9 @@ export default function SelectPlace() {
     <>
       <article className={styles.container}>
         <h3 className={styles.title}>어디로 떠나시나요?</h3>
-        <div className={styles.description}>
-          이번 여행에서 가고 싶은 도시를 추가해 주세요!
-        </div>
+        <div className={styles.description}>이번 여행에서 가고 싶은 도시를 추가해 주세요!</div>
         <button onClick={handleOpenModal} className={styles.newButton}>
-          <svg
-            width="22"
-            height="22"
-            viewBox="0 0 24 24"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path
               d="M18.7292 10.8148C18.7292 14.4197 15.577 17.6744 13.5603 19.3877C12.5993 20.2041 11.2295 20.2041 10.2686 19.3877C8.25185 17.6743 5.09961 14.4197 5.09961 10.8148C5.09961 9.00741 5.8176 7.27404 7.09562 5.99601C8.37365 4.71799 10.107 4 11.9144 4C13.7218 4 15.4552 4.71799 16.7332 5.99601C18.0112 7.27404 18.7292 9.00741 18.7292 10.8148Z"
               stroke="#131214"
@@ -77,11 +67,7 @@ export default function SelectPlace() {
 
             <ul className={styles.list}>
               {cities.map((city) => (
-                <li
-                  onClick={(e) => handleRemoveCity(e, city)}
-                  className={styles.item}
-                  key={city}
-                >
+                <li onClick={(e) => handleRemoveCity(e, city)} className={styles.item} key={city}>
                   <span className={styles.city}>{city.split(",")[0]}</span>
                   <span className={styles.country}>{city.split(",")[1]}</span>
                 </li>
@@ -90,9 +76,7 @@ export default function SelectPlace() {
           </>
         )}
         {cities.length > 0 && (
-          <button onClick={handleNextStep} className={styles.nextButton}>
-            {cities.length}개 도시 선택&nbsp;&middot;&nbsp;다음
-          </button>
+          <BottomFixedButton handler={handleNextStep} text={`${cities.length}개 도시 선택 · 다음`} />
         )}
       </article>
       {openModal && (
