@@ -3,6 +3,9 @@ type Props = {
 };
 
 export default function NewHeaderTitle({ page }: Props) {
+  if (page === "title") {
+    return <>시작하기</>;
+  }
   if (page === "date") {
     return <>여행 날짜 선택</>;
   }
