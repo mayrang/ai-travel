@@ -34,17 +34,25 @@ export async function GET(req: Request, res: Response) {
 
                 1. [city]: Find a city with the same name as [event] entered by the user. And translate the printout into Korean.
                 2. [country]: Find the country to which [city] belongs. And translate the printout into Korean.
-                2. [city]: Please search for a [city] like the one you searched for and recommend 3 more cities that are worth a tour near it. And those cities should be somewhat recognized as tourist destinations.And translate the printout into Korean.
-                3. [country]: Give [city] their corresponding countries in the same order as [city]. And translate the printout into Korean.
+                3. [cities]: Please search based on [city] and recommend 3 more cities that are within 1 hour by car. And please translate the printouts into Korean.
+                4. [countries]: Give [city] their corresponding countries in the same order as [city]. And translate the printout into Korean.
+                5. [lats]: Give the city's mid-latitudes from Google maps for [cities].
+                6. [longs]: Give the city's mid-longitude from Google maps for [cities].
+                7. [lat]: Give the city's mid-latitudes from Google maps for [city].
+                8. [lng]: Give the city's mid-longitude from Google maps for [city].
 
                     
                 Make sure to translate the output into Korean and use the following JSON format:
                 {
                     city:  [city],
-                    country:  [country]
+                    country:  [country],
+                    lat: [lat],
+                    lng: [lng],
                     result: [
-                        city:  [city]
-                        country:  [country]
+                        city:  [cities]
+                        country:  [countries],
+                        lat: [lats],
+                        lng: [lngs]
                     ]
                 }
 
@@ -65,7 +73,9 @@ export async function GET(req: Request, res: Response) {
         max_tokens: 1000,
       }),
     });
+
     const data = await response.json();
+    console.log("data", data.choices[0].message);
 
     if (data.error) {
       throw new Error(data.error.message || "gpt error");

@@ -26,13 +26,18 @@ export default function SearchCity({ setOpenModal }: Props) {
 
   const handleAddCity = (
     e: React.MouseEvent<HTMLLIElement, MouseEvent>,
-    item: { city: string; country: string }
+    item: { city: string; country: string; lat: number; lng: number }
   ) => {
-    appendCities(`${item.city},${item.country}`);
+    appendCities({
+      city: item.city,
+      country: item.country,
+      lat: item.lat,
+      lng: item.lng,
+    });
     setOpenModal(false);
   };
 
-  console.log(isFetching, isPending, isLoading);
+  console.log("check data", data);
 
   return (
     <div className={styles.container}>

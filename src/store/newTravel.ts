@@ -2,7 +2,12 @@ import { Post } from "@/model/calendar";
 import { create } from "zustand";
 
 type NewTravelStore = {
-  cities: string[];
+  cities: {
+    city: string;
+    country: string;
+    lat: number;
+    lng: number;
+  }[];
   headcount: number;
   themes: {
     item: string;
@@ -11,8 +16,18 @@ type NewTravelStore = {
   title: string;
   date: { startDate: Date; endDate: Date } | null;
   setTitle: (title: string) => void;
-  appendCities: (city: string) => void;
-  removeCities: (city: string) => void;
+  appendCities: (city: {
+    city: string;
+    country: string;
+    lat: number;
+    lng: number;
+  }) => void;
+  removeCities: (city: {
+    city: string;
+    country: string;
+    lat: number;
+    lng: number;
+  }) => void;
   setDate: (date: { startDate: Date; endDate: Date }) => void;
   setHeadcount: (headcount: number) => void;
   appendThemes: (themes: { item: string; color: string }) => void;
@@ -39,7 +54,7 @@ export const useNewTravelStore = create<NewTravelStore>((set) => ({
   removeCities: (city) => {
     set((state) => ({
       ...state,
-      cities: [...state.cities].filter((item) => item !== city),
+      cities: [...state.cities].filter((item) => item.city !== city.city),
     }));
   },
   setHeadcount: (headcount) => {

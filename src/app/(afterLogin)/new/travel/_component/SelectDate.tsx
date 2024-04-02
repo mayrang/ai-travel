@@ -15,9 +15,9 @@ export default function SelectDate() {
   const dayArray = ["일", "월", "화", "수", "목", "금", "토"];
   const { post, startDate, endDate } = useDateStore();
   const { setPage } = useAddPageStore();
-  const { setDate } = useNewTravelStore();
+  const { setDate, cities } = useNewTravelStore();
   const calendar = useCalendar(post, startDate, endDate);
-
+  console.log("cities", cities);
   const clickNext = () => {
     if (startDate && endDate) {
       setDate({ startDate, endDate });
@@ -44,7 +44,8 @@ export default function SelectDate() {
       {startDate && endDate && (
         <div className={styles.buttonContainer}>
           <button onClick={clickNext} className={styles.nextButton}>
-            {dayjs(startDate).format("YYYY.MM.DD (dd)")} ~ {dayjs(endDate).format("YYYY.MM.DD (dd)")}
+            {dayjs(startDate).format("YYYY.MM.DD (dd)")} ~{" "}
+            {dayjs(endDate).format("YYYY.MM.DD (dd)")}
             &nbsp;&middot;&nbsp;
             {dayjs(endDate).diff(startDate, "day")}박
           </button>
