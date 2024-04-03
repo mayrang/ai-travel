@@ -31,8 +31,8 @@ export default function SearchCity({ setOpenModal }: Props) {
     appendCities({
       city: item.city,
       country: item.country,
-      lat: item.lat,
-      lng: item.lng,
+      lat: typeof item.lat === "number" ? item.lat : parseFloat(item.lat),
+      lng: typeof item.lng === "number" ? item.lng : parseFloat(item.lng),
     });
     setOpenModal(false);
   };

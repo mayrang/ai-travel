@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { GoogleMap, useJsApiLoader } from "@react-google-maps/api";
 import styles from "./MapContainer.module.css";
 import { useNewTravelStore } from "@/store/newTravel";
+import { useEventStore } from "@/store/event";
 // const markerOptions = {
 //   // 사용자 정의 마커 이미지를 지정합니다.
 //   icon: {
@@ -12,6 +13,7 @@ import { useNewTravelStore } from "@/store/newTravel";
 // };
 
 const MapContainer: React.FC = () => {
+  const { currentCity } = useEventStore();
   const { isLoaded } = useJsApiLoader({
     id: "travel_map",
     googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAP_API ?? "",
@@ -22,9 +24,15 @@ const MapContainer: React.FC = () => {
   const [map, setMap] = React.useState<google.maps.Map | null>(null);
   const [directions, setDirections] =
     useState<google.maps.DirectionsResult | null>(null);
-  const { cities } = useNewTravelStore();
-  const center = { lat: cities[0]?.lat || 0, lng: cities[0]?.lng };
 
+  const [center, setCenter] = useState<{ lat: number; lng: number }>({
+    lat: currentCity.lat,
+    lng: currentCity.lng,
+  });
+  console.log(currentCity, center);
+  useEffect(() => {
+    setCenter({ lat: currentCity.lat, lng: currentCity.lng });
+  }, [currentCity]);
   const onLoad = React.useCallback(function callback(map: google.maps.Map) {
     // This is just an example of getting and using the map instance!!! don't just blindly copy!
     const bounds = new window.google.maps.LatLngBounds(center);
@@ -50,7 +58,7 @@ const MapContainer: React.FC = () => {
           mapTypeControl: false,
           fullscreenControl: false,
         }}
-        zoom={11}
+        zoom={8}
         onLoad={onLoad}
         onUnmount={onUnmount}
       >
