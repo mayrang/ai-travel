@@ -12,6 +12,7 @@ type NewTravelStore = {
   themes: {
     item: string;
     color: string;
+    english: string;
   }[];
   title: string;
   date: { startDate: Date; endDate: Date } | null;
@@ -30,9 +31,17 @@ type NewTravelStore = {
   }) => void;
   setDate: (date: { startDate: Date; endDate: Date }) => void;
   setHeadcount: (headcount: number) => void;
-  appendThemes: (themes: { item: string; color: string }) => void;
+  appendThemes: (themes: {
+    item: string;
+    color: string;
+    english: string;
+  }) => void;
   resetThemes: () => void;
-  removeThemes: (theme: { item: string; color: string }) => void;
+  removeThemes: (theme: {
+    item: string;
+    color: string;
+    english: string;
+  }) => void;
   reset: () => void;
 };
 
@@ -60,10 +69,10 @@ export const useNewTravelStore = create<NewTravelStore>((set) => ({
   setHeadcount: (headcount) => {
     set({ headcount });
   },
-  appendThemes: (theme: { item: string; color: string }) => {
+  appendThemes: (theme) => {
     set((state) => ({ ...state, themes: [...state.themes, theme] }));
   },
-  removeThemes: (theme: { item: string; color: string }) => {
+  removeThemes: (theme) => {
     set((state) => ({
       ...state,
       themes: [...state.themes].filter((item) => item.item !== theme.item),

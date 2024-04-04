@@ -11,7 +11,7 @@ export default function ThemeList() {
   );
   const handleAppendTheme = (
     _: React.MouseEvent<HTMLButtonElement>,
-    theme: { item: string; color: string }
+    theme: { item: string; color: string; english: string }
   ) => {
     appendThemes(theme);
   };

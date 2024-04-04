@@ -75,7 +75,7 @@ export async function GET(req: Request, res: Response) {
     });
 
     const data = await response.json();
-    console.log("data", data.choices[0].message);
+    console.log("data", data.choices[0].message.content);
 
     if (data.error) {
       throw new Error(data.error.message || "gpt error");

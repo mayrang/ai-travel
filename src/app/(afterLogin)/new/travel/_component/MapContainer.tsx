@@ -4,6 +4,7 @@ import { GoogleMap, useJsApiLoader } from "@react-google-maps/api";
 import styles from "./MapContainer.module.css";
 import { useNewTravelStore } from "@/store/newTravel";
 import { useEventStore } from "@/store/event";
+import Markers from "./Markers";
 // const markerOptions = {
 //   // 사용자 정의 마커 이미지를 지정합니다.
 //   icon: {
@@ -62,17 +63,7 @@ const MapContainer: React.FC = () => {
         onLoad={onLoad}
         onUnmount={onUnmount}
       >
-        <div
-          id="panel"
-          style={{
-            flex: "1",
-            padding: "20px",
-            height: "400px",
-            overflowY: "auto",
-            zIndex: 1100,
-            position: "fixed",
-          }}
-        ></div>
+        <Markers />
       </GoogleMap>
     </>
   ) : (
