@@ -75,12 +75,17 @@ export async function GET(req: Request, res: Response) {
     });
 
     const data = await response.json();
-    console.log("data", data.choices[0].message.content);
-
+    console.log(
+      "data",
+      data.choices[0].message.content,
+      typeof data.choices[0].message.content
+    );
+    const parsedData = JSON.parse(data.choices[0].message.content);
     if (data.error) {
       throw new Error(data.error.message || "gpt error");
     }
-    return NextResponse.json({ data: data.choices[0].message.content });
+    console.log("parsedData", parsedData);
+    return NextResponse.json({ data: parsedData });
   } catch (error) {
     console.error("Error fetching places:", error);
     return NextResponse.json({ data: null }, { status: 500 });

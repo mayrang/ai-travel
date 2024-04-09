@@ -61,7 +61,7 @@ export async function POST(req: Request, res: Response) {
 1. the number of people : ${headcount}
 2. the number of days of travel: ${days}
 3. a travel theme: ${themes}
-4. city: 오타루
+4. city: ${city}
 
                     """
                   `,
@@ -78,7 +78,9 @@ export async function POST(req: Request, res: Response) {
     if (data.error) {
       throw new Error(data.error.message || "gpt error");
     }
-    return NextResponse.json({ data: data.choices[0].message.content });
+    const parsedData = JSON.parse;
+    data.choices[0].message.content;
+    return NextResponse.json({ data: parsedData });
   } catch (error) {
     console.error("Error fetching places:", error);
     return NextResponse.json({ data: null }, { status: 500 });

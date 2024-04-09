@@ -26,7 +26,7 @@ export const getSearchCity: QueryFunction<
       }
     );
     const result = await response.json();
-    const data = JSON.parse(result.data);
+    const data = result.data;
     return data;
   } catch (err) {
     console.log(err);

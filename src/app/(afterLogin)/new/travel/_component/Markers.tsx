@@ -5,6 +5,7 @@ import React from "react";
 import { getRecommandPlaces } from "../_lib/getRecommendPlaces";
 import { useNewTravelStore } from "@/store/newTravel";
 import dayjs from "dayjs";
+import useFindRecommandPlace from "../_lib/useFindRecommandPlace";
 
 export default function Markers() {
   const {
@@ -25,6 +26,9 @@ export default function Markers() {
     queryFn: getRecommandPlaces,
     staleTime: 0,
   });
-  console.log("recommandPlaces", recommandPlaces);
+
+  const { data } = useFindRecommandPlace(recommandPlaces);
+  console.log(data);
+
   return <></>;
 }

@@ -1,5 +1,11 @@
 import { SearchCity } from "@/model/search";
 import { QueryFunction } from "@tanstack/query-core";
+import {
+  UseQueryOptions,
+  UseQueryResult,
+  useQueries,
+} from "@tanstack/react-query";
+import getFindPlace from "./getFindPlace";
 
 interface RecommandPlace {
   place: string;
@@ -17,7 +23,7 @@ export const getRecommandPlaces: QueryFunction<
   try {
     const [_1, _2, body] = queryKey;
     const { headcount, days, themes, city } = body;
-
+    console.log(city);
     const response = await fetch(
       `${process.env.NEXT_PUBLIC_BASE_URL}/api/place/recommand`,
 
@@ -29,6 +35,7 @@ export const getRecommandPlaces: QueryFunction<
           city,
           themes,
         }),
+        cache: "no-cache",
         next: {
           tags: [
             "recommand",
@@ -41,14 +48,10 @@ export const getRecommandPlaces: QueryFunction<
       }
     );
     const result = await response.json();
-    console.log("reuslt", result.data);
-    const data = JSON.parse(result.data);
-    const test = data.place[0].place;
-    const placeRes = await fetch(
-      `${process.env.NEXT_PUBLIC_BASE_URL}/api/place/detail?query=${test}`
-    );
-    const place = await placeRes.json();
-    console.log("place", place.data);
+
+    const data = result.place;
+    console.log("reuslt", data);
+
     return data;
   } catch (err) {
     console.log(err);
