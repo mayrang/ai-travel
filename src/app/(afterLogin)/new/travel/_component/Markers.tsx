@@ -7,6 +7,7 @@ import { useNewTravelStore } from "@/store/newTravel";
 import dayjs from "dayjs";
 import useFindRecommandPlace from "../_lib/useFindRecommandPlace";
 import { MarkerF } from "@react-google-maps/api";
+import marker from "../../../../../../public/marker.svg";
 
 export default function Markers() {
   const {
@@ -36,7 +37,14 @@ export default function Markers() {
       {data &&
         data.length > 0 &&
         data.map((item) => (
-          <MarkerF key={item.place_id} position={item.geometry.location} />
+          <MarkerF
+            key={item.place_id}
+            icon={{
+              url: marker,
+              anchor: new google.maps.Point(5, 58),
+            }}
+            position={item.geometry.location}
+          />
         ))}
     </>
   );

@@ -24,8 +24,9 @@ const MapContainer: React.FC = () => {
     google.maps.LatLng[] | null
   >(null);
   const [map, setMap] = React.useState<google.maps.Map | null>(null);
-  const [directions, setDirections] =
-    useState<google.maps.DirectionsResult | null>(null);
+  const [zoom, setZoom] = useState(11);
+  // const [directions, setDirections] =
+  //   useState<google.maps.DirectionsResult | null>(null);
 
   const [center, setCenter] = useState<{ lat: number; lng: number }>({
     lat: currentCity.lat,
@@ -38,20 +39,19 @@ const MapContainer: React.FC = () => {
   const onLoad = React.useCallback(
     function callback(map: google.maps.Map) {
       if (center.lat && center.lng) {
-        const bounds = new window.google.maps.LatLngBounds();
-        bounds.extend(center);
+        const bounds = new window.google.maps.LatLngBounds(center);
+
         map.fitBounds(bounds);
       }
+      map.setZoom(11);
+      console.log("map", map);
       setMap(map);
-      map.setZoom(10);
     },
     [center]
   );
   const onUnmount = React.useCallback(function callback(map: google.maps.Map) {
     setMap(null);
   }, []);
-
-  console.log(directions);
 
   return isLoaded ? (
     <>
@@ -64,8 +64,8 @@ const MapContainer: React.FC = () => {
           mapTypeControl: false,
           fullscreenControl: false,
         }}
-        zoom={10}
-        onLoad={onLoad}
+        //onLoad={onLoad}
+        zoom={zoom}
         onUnmount={onUnmount}
       >
         <Markers />
