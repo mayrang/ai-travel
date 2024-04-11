@@ -23,10 +23,10 @@ export interface DetailRecommandPlace {
       northeast: LatLng;
       southwest: LatLng;
     };
-    name: string;
-    photos?: GooglePlacePhoto[];
-    place_id: string;
-    rating: number;
-    time: number;
   };
+  name: string;
+  photos?: GooglePlacePhoto[];
+  place_id: string;
+  rating: number;
+  time: number;
 }

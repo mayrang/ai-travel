@@ -18,6 +18,7 @@ const MapContainer: React.FC = () => {
   const { isLoaded } = useJsApiLoader({
     id: "travel_map",
     googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAP_API ?? "",
+    language: "ko",
   });
   const [lineCoordinates, setLineCoordinates] = useState<
     google.maps.LatLng[] | null
@@ -30,18 +31,22 @@ const MapContainer: React.FC = () => {
     lat: currentCity.lat,
     lng: currentCity.lng,
   });
-  console.log(currentCity, center);
+  console.log("currentCity", currentCity, center);
   useEffect(() => {
     setCenter({ lat: currentCity.lat, lng: currentCity.lng });
   }, [currentCity]);
-  const onLoad = React.useCallback(function callback(map: google.maps.Map) {
-    // This is just an example of getting and using the map instance!!! don't just blindly copy!
-    const bounds = new window.google.maps.LatLngBounds(center);
-    map.fitBounds(bounds);
-
-    setMap(map);
-  }, []);
-
+  const onLoad = React.useCallback(
+    function callback(map: google.maps.Map) {
+      if (center.lat && center.lng) {
+        const bounds = new window.google.maps.LatLngBounds();
+        bounds.extend(center);
+        map.fitBounds(bounds);
+      }
+      setMap(map);
+      map.setZoom(10);
+    },
+    [center]
+  );
   const onUnmount = React.useCallback(function callback(map: google.maps.Map) {
     setMap(null);
   }, []);
@@ -54,12 +59,12 @@ const MapContainer: React.FC = () => {
         mapContainerClassName={styles.container}
         center={center}
         options={{
-          zoomControl: false,
+          zoomControl: true,
           streetViewControl: false,
           mapTypeControl: false,
           fullscreenControl: false,
         }}
-        zoom={8}
+        zoom={10}
         onLoad={onLoad}
         onUnmount={onUnmount}
       >
