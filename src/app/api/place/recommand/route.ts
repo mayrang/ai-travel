@@ -40,7 +40,7 @@ export async function POST(req: Request, res: Response) {
              Must be made in strict JSON format. :
                 {
                     "place": [
-                     place: [place]
+                     place: [place],
                       time: [time]
                     ]
                    
@@ -78,8 +78,7 @@ export async function POST(req: Request, res: Response) {
     if (data.error) {
       throw new Error(data.error.message || "gpt error");
     }
-    const parsedData = JSON.parse;
-    data.choices[0].message.content;
+    const parsedData = JSON.parse(data.choices[0].message.content);
     return NextResponse.json({ data: parsedData });
   } catch (error) {
     console.error("Error fetching places:", error);

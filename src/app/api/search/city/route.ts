@@ -49,7 +49,7 @@ export async function GET(req: Request, res: Response) {
                     lat: [lat],
                     lng: [lng],
                     result: [
-                        city:  [cities]
+                        city:  [cities],
                         country:  [countries],
                         lat: [lats],
                         lng: [lngs]

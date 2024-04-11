@@ -6,12 +6,8 @@ import {
   useQueries,
 } from "@tanstack/react-query";
 import getFindPlace from "./getFindPlace";
+import { RecommandPlace } from "@/model/new";
 
-interface RecommandPlace {
-  place: string;
-  lat: number;
-  lng: number;
-}
 export const getRecommandPlaces: QueryFunction<
   RecommandPlace[],
   [
@@ -48,8 +44,8 @@ export const getRecommandPlaces: QueryFunction<
       }
     );
     const result = await response.json();
-
-    const data = result.place;
+    console.log("check", result.data.place);
+    const data = result.data.place;
     console.log("reuslt", data);
 
     return data;
