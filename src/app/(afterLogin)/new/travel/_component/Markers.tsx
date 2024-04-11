@@ -40,8 +40,8 @@ export default function Markers() {
           <MarkerF
             key={item.place_id}
             icon={{
-              url: marker,
-              anchor: new google.maps.Point(5, 58),
+              url: "/location-dot-solid.png",
+              scaledSize: new google.maps.Size(31, 43),
             }}
             position={item.geometry.location}
           />
