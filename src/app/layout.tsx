@@ -3,6 +3,13 @@ import "./globals.css";
 import AuthProvider from "./_component/AuthProvider";
 import Head from "next/head";
 
+const icon = {
+  path: "M 100 100 L 300 100 L 200 300 z",
+  fillColor: "red",
+  strokeColor: "blue",
+  strokeWidth: 3,
+};
+
 // export const metadata: Metadata = {
 //   title: {
 //     default: "outstagram",

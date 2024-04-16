@@ -1,5 +1,6 @@
 import { SearchCity } from "@/model/search";
 import { QueryFunction } from "@tanstack/query-core";
+import { revalidatePath, revalidateTag } from "next/cache";
 
 export const getSearchCity: QueryFunction<
   SearchCity,
@@ -26,7 +27,9 @@ export const getSearchCity: QueryFunction<
       }
     );
     const result = await response.json();
+
     const data = result.data;
+
     return data;
   } catch (err) {
     console.log(err);

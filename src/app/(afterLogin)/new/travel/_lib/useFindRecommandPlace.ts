@@ -15,7 +15,7 @@ export default function useFindRecommandPlace(data: RecommandPlace[] = []) {
   const queries = data.map<UseQueryOptions<DetailRecommandPlace, Error>>(
     (item) => {
       return {
-        queryKey: ["holidays", item.place],
+        queryKey: ["places", item.place],
         queryFn: () => getFindPlace(item),
         staleTime: 1000 * 60 * 60 * 5,
       };

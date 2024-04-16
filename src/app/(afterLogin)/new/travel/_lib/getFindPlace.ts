@@ -7,7 +7,7 @@ export default async function getFindPlace(place: {
       `${process.env.NEXT_PUBLIC_BASE_URL}/api/place/detail?query=${place.place}`
     );
     const result = await placeRes.json();
-    if (result.data.candidates) {
+    if (result?.data?.candidates) {
       const candidates = result.data.candidates[0];
       return { ...candidates, time: place.time };
     }

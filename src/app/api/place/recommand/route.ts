@@ -37,11 +37,11 @@ export async function POST(req: Request, res: Response) {
                 1. [place]: Please recommend 10 places to tour based on the [event] entered by the user. Those places should have results when searching on Google Maps. The result must be in the form of a word.
                 2, [time]: Estimate the average time it takes to look at [place] and give it as an integer in minutes.
                     
-             Must be made in strict JSON format. :
+             Must be made in strict JSON format. If you don't follow the format below, I'll give you a penalty:
                 {
                     "place": [
                      place: [place],
-                      time: [time]
+                      time: [time],
                     ]
                    
                     
@@ -68,6 +68,7 @@ export async function POST(req: Request, res: Response) {
           },
         ],
         temperature: 0.5,
+
         max_tokens: 1000,
       }),
     });

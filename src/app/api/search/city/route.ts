@@ -1,4 +1,5 @@
-import { NextResponse } from "next/server";
+import { revalidateTag } from "next/cache";
+import { NextRequest, NextResponse } from "next/server";
 
 /** 
 curl https://api.openai.com/v1/chat/completions \
@@ -11,7 +12,7 @@ curl https://api.openai.com/v1/chat/completions \
    }'
 */
 
-export async function GET(req: Request, res: Response) {
+export async function GET(req: NextRequest, res: Response) {
   const { searchParams } = new URL(req.url, process.env.BASE_URL);
   const query = searchParams.get("query");
 
@@ -42,7 +43,7 @@ export async function GET(req: Request, res: Response) {
                 8. [lng]: Give the city's mid-longitude from Google maps for [city].
 
                     
-                Make sure to translate the output into Korean and use the following JSON format:
+                Make sure to translate the output into Korean and use the following JSON format. If you don't follow the format below, I'll give you a penalty:
                 {
                     city:  [city],
                     country:  [country],
@@ -52,8 +53,8 @@ export async function GET(req: Request, res: Response) {
                         city:  [cities],
                         country:  [countries],
                         lat: [lats],
-                        lng: [lngs]
-                    ]
+                        lng: [lngs],
+                    ],
                 }
 
 
@@ -70,21 +71,23 @@ export async function GET(req: Request, res: Response) {
           },
         ],
         temperature: 0.55,
+
         max_tokens: 1000,
       }),
     });
 
     const data = await response.json();
+    if (data.error || !data?.choices[0].message?.content) {
+      throw new Error(data.error.message || "gpt error");
+    }
     console.log(
       "data",
       data.choices[0].message.content,
       typeof data.choices[0].message.content
     );
     const parsedData = JSON.parse(data.choices[0].message.content);
-    if (data.error) {
-      throw new Error(data.error.message || "gpt error");
-    }
-    console.log("parsedData", parsedData);
+
+    console.log("parsedData", typeof parsedData);
     return NextResponse.json({ data: parsedData });
   } catch (error) {
     console.error("Error fetching places:", error);

@@ -1,8 +1,13 @@
 "use client";
 import SearchInput from "@/app/_component/SearchInput";
 import useDebounce from "@/app/_lib/useDebounce";
-import { useQuery } from "@tanstack/react-query";
-import React, { ChangeEventHandler, MouseEventHandler, useState } from "react";
+import { QueryClient, useQuery, useQueryClient } from "@tanstack/react-query";
+import React, {
+  ChangeEventHandler,
+  MouseEventHandler,
+  useEffect,
+  useState,
+} from "react";
 import { getSearchCity } from "../_lib/getSearchCity";
 import styles from "./SearchCity.module.css";
 import { useNewTravelStore } from "@/store/newTravel";
@@ -20,6 +25,15 @@ export default function SearchCity({ setOpenModal }: Props) {
     queryFn: getSearchCity,
     staleTime: 60 * 1000 * 60 * 5,
   });
+  const queryClient = useQueryClient();
+
+  useEffect(() => {
+    if (data === null && !isLoading) {
+      queryClient.removeQueries({
+        queryKey: ["search", "city", debouncedValue],
+      });
+    }
+  }, [data]);
   const changeValue: ChangeEventHandler<HTMLInputElement> = (e) => {
     setValue(e.target.value);
   };
