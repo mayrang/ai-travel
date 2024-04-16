@@ -24,6 +24,7 @@ export default function SearchCity({ setOpenModal }: Props) {
     queryKey: ["search", "city", debouncedValue],
     queryFn: getSearchCity,
     staleTime: 60 * 1000 * 60 * 5,
+    retry: 3,
   });
   const queryClient = useQueryClient();
 

@@ -25,7 +25,8 @@ export default function Markers() {
       { city, headcount, days, themes: toStringThemes },
     ],
     queryFn: getRecommandPlaces,
-    staleTime: 0,
+    staleTime: 60 * 1000 * 5,
+    retry: 3,
   });
 
   const { data } = useFindRecommandPlace(recommandPlaces);
