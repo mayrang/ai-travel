@@ -3,12 +3,12 @@ import React, { useState } from "react";
 import styles from "./NewTravelTitle.module.css";
 import cls from "classnames";
 import { motion } from "framer-motion";
-import SelectPlace from "./SelectPlace";
-import SelectHeadcount from "./SelectHeadcount";
+import SelectPlace from "./city/SelectPlace";
+import SelectHeadcount from "./headcount/SelectHeadcount";
 import { useStepStore } from "@/store/step";
-import SelectTheme from "./SelectTheme";
+import SelectTheme from "./theme/SelectTheme";
 import { useAddPageStore } from "@/store/addPage";
-import NewTitle from "./NewTitle";
+import NewTitle from "./title/NewTitle";
 export default function NewTravelTitle() {
   const { step, setStep } = useStepStore();
   const { setPage } = useAddPageStore();

@@ -1,4 +1,4 @@
-export interface RecommandPlace {
+export interface SimplePlace {
   place: string;
   time: number;
 }
@@ -15,7 +15,7 @@ interface GooglePlacePhoto {
   witdh: number;
 }
 
-export interface DetailRecommandPlace {
+export interface DetailPlace {
   formatted_address: string;
   geometry: {
     location: LatLng;

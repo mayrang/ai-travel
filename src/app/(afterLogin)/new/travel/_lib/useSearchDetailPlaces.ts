@@ -1,6 +1,6 @@
 "use client";
 
-import { DetailRecommandPlace, RecommandPlace } from "@/model/new";
+import { DetailPlace, SimplePlace } from "@/model/new";
 import {
   UseQueryOptions,
   UseQueryResult,
@@ -9,19 +9,17 @@ import {
 import { useEffect, useState } from "react";
 import getFindPlace from "./getFindPlace";
 
-export default function useFindRecommandPlace(data: RecommandPlace[] = []) {
-  const [places, setPlaces] = useState<DetailRecommandPlace[]>([]);
+export default function useSearchDetailPlaces(data: SimplePlace[] = []) {
+  const [places, setPlaces] = useState<DetailPlace[]>([]);
 
-  const queries = data.map<UseQueryOptions<DetailRecommandPlace, Error>>(
-    (item) => {
-      return {
-        queryKey: ["places", item.place],
-        queryFn: () => getFindPlace(item),
-        staleTime: 1000 * 60 * 60 * 5,
-      };
-    }
-  );
-  const queryResults: UseQueryResult<DetailRecommandPlace>[] = useQueries({
+  const queries = data.map<UseQueryOptions<DetailPlace, Error>>((item) => {
+    return {
+      queryKey: ["places", item.place],
+      queryFn: () => getFindPlace(item),
+      staleTime: 1000 * 60 * 60 * 5,
+    };
+  });
+  const queryResults: UseQueryResult<DetailPlace>[] = useQueries({
     queries,
   });
   const queryResultStatus = queryResults.every((result) => !result.isLoading);
@@ -32,9 +30,7 @@ export default function useFindRecommandPlace(data: RecommandPlace[] = []) {
       if (queryResults && queryResults.length > 0) {
         console.log("palce", queryResults);
 
-        setPlaces(
-          queryResults.map((data) => data.data as DetailRecommandPlace)
-        );
+        setPlaces(queryResults.map((data) => data.data as DetailPlace));
       }
     }
   }, [queryResultError, queryResultStatus, queryResults.length]);

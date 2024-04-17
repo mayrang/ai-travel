@@ -8,7 +8,7 @@ import React, {
   useEffect,
   useState,
 } from "react";
-import { getSearchCity } from "../_lib/getSearchCity";
+import { getSearchCity } from "../../_lib/getSearchCity";
 import styles from "./SearchCity.module.css";
 import { useNewTravelStore } from "@/store/newTravel";
 import { SyncLoader } from "react-spinners";

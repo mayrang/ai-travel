@@ -1,8 +1,8 @@
 "use client";
 import { useAddPageStore } from "@/store/addPage";
 import React from "react";
-import SelectDate from "./SelectDate";
-import NewEvent from "./NewEvent";
+import SelectDate from "./calendar/SelectDate";
+import NewEvent from "./event/NewEvent";
 import { notFound } from "next/navigation";
 import NewTravelTitle from "./NewTravelTitle";
 

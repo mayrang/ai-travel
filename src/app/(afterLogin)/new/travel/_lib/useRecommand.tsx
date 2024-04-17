@@ -1,14 +1,11 @@
-"use client";
 import { useEventStore } from "@/store/event";
-import { useQuery } from "@tanstack/react-query";
-import React from "react";
-import { getRecommandPlaces } from "../_lib/getRecommendPlaces";
 import { useNewTravelStore } from "@/store/newTravel";
+import { useQuery } from "@tanstack/react-query";
 import dayjs from "dayjs";
-import useFindRecommandPlace from "../_lib/useFindRecommandPlace";
-import { MarkerF } from "@react-google-maps/api";
+import { getRecommandPlaces } from "./getRecommendPlaces";
+import useSearchDetailPlaces from "./useSearchDetailPlaces";
 
-export default function Markers() {
+export default function useRecommand() {
   const {
     currentCity: { city },
   } = useEventStore();
@@ -29,16 +26,7 @@ export default function Markers() {
     retry: 3,
   });
 
-  const { data } = useFindRecommandPlace(recommandPlaces);
-  console.log(data);
+  const { data } = useSearchDetailPlaces(recommandPlaces);
 
-  return (
-    <>
-      {data &&
-        data.length > 0 &&
-        data.map((item) => (
-          <MarkerF key={item.place_id} position={item.geometry.location} />
-        ))}
-    </>
-  );
+  return { data };
 }

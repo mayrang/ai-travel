@@ -7,7 +7,10 @@ import cls from "classnames";
 export default function SelectedTheme() {
   const { themes, removeThemes, resetThemes } = useNewTravelStore();
 
-  const handleRemoveTheme = (_: React.MouseEvent<HTMLButtonElement>, theme: { item: string; color: string }) => {
+  const handleRemoveTheme = (
+    _: React.MouseEvent<HTMLButtonElement>,
+    theme: { item: string; color: string; english: string }
+  ) => {
     removeThemes(theme);
   };
   const handleReset = () => {
@@ -29,8 +32,18 @@ export default function SelectedTheme() {
                 )}
               >
                 <span>{theme.item}</span>
-                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M4 4L8 8M8 8L12 12M8 8L12 4M8 8L4 12" strokeWidth="1.5" strokeLinecap="round" />
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 16 16"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M4 4L8 8M8 8L12 12M8 8L12 4M8 8L4 12"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                  />
                 </svg>
               </button>
             </li>
