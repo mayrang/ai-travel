@@ -83,8 +83,7 @@ const MapContainer: React.FC = () => {
         zoom={zoom}
         onUnmount={onUnmount}
       >
-        <MarkerF position={{ lat: center.lat, lng: center.lng }} />
-        {/* <Markers /> */}
+        <Markers />
       </GoogleMap>
     </>
   ) : (
