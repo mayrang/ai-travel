@@ -1,6 +1,6 @@
 "use client";
-import React, { useEffect, useState } from "react";
-import { GoogleMap, useJsApiLoader } from "@react-google-maps/api";
+import React, { useEffect, useLayoutEffect, useState } from "react";
+import { GoogleMap, MarkerF, useJsApiLoader } from "@react-google-maps/api";
 import styles from "./MapContainer.module.css";
 import { useNewTravelStore } from "@/store/newTravel";
 import { useEventStore } from "@/store/event";
@@ -33,22 +33,37 @@ const MapContainer: React.FC = () => {
     lng: currentCity.lng,
   });
   console.log("currentCity", currentCity, center);
-  useEffect(() => {
-    setCenter({ lat: currentCity.lat, lng: currentCity.lng });
-  }, [currentCity]);
-  const onLoad = React.useCallback(
-    function callback(map: google.maps.Map) {
-      if (center.lat && center.lng) {
-        const bounds = new window.google.maps.LatLngBounds(center);
-
-        map.fitBounds(bounds);
+  useLayoutEffect(() => {
+    const height = window.innerHeight;
+    const cal66 = Math.round(height * 0.16);
+    let calCenterLat = currentCity.lat;
+    if (currentCity.lat > 0) {
+      if (currentCity.lat - cal66 < 0) {
+        calCenterLat = Math.abs(calCenterLat - cal66 / 1790);
+      } else {
+        calCenterLat -= cal66 / 1790;
       }
-      map.setZoom(11);
-      console.log("map", map);
-      setMap(map);
-    },
-    [center]
-  );
+    } else {
+      calCenterLat += cal66 / 1790;
+    }
+
+    console.log(calCenterLat);
+
+    setCenter({ lat: calCenterLat, lng: currentCity.lng });
+  }, [currentCity]);
+  // const onLoad = React.useCallback(
+  //   function callback(map: google.maps.Map) {
+  //     if (center.lat && center.lng) {
+  //       const bounds = new window.google.maps.LatLngBounds(center);
+
+  //       map.fitBounds(bounds);
+  //     }
+  //     map.setZoom(11);
+  //     console.log("map", map);
+  //     setMap(map);
+  //   },
+  //   [center]
+  // );
   const onUnmount = React.useCallback(function callback(map: google.maps.Map) {
     setMap(null);
   }, []);
@@ -68,7 +83,8 @@ const MapContainer: React.FC = () => {
         zoom={zoom}
         onUnmount={onUnmount}
       >
-        <Markers />
+        <MarkerF position={{ lat: center.lat, lng: center.lng }} />
+        {/* <Markers /> */}
       </GoogleMap>
     </>
   ) : (

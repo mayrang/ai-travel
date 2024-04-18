@@ -3,6 +3,7 @@ import React, { useEffect } from "react";
 import MapContainer from "./MapContainer";
 import { useNewTravelStore } from "@/store/newTravel";
 import { useEventStore } from "@/store/event";
+import EventSection from "./EventSection";
 
 export default function NewEvent() {
   const { cities } = useNewTravelStore();
@@ -10,5 +11,10 @@ export default function NewEvent() {
   useEffect(() => {
     setCurrentCity(cities[0]);
   }, []);
-  return <MapContainer />;
+  return (
+    <>
+      <MapContainer />
+      <EventSection />
+    </>
+  );
 }

@@ -1,0 +1,28 @@
+.container {
+  position: fixed;
+  z-index: 4;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100dvw;
+  background: #ffffff;
+  border-radius: 16px 16px 0px 0px;
+  max-width: 430px;
+  margin: 0 auto;
+}
+
+.bar {
+  top: 8px;
+  height: 5px;
+  width: 48px;
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  background: #cdcfd0;
+  border-radius: 100px;
+}
+
+.default {
+  height: 33dvh;
+}
