@@ -1,8 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import SectionTab from "./SectionTab";
 import SectionContainer from "./SectionContainer";
+import SelectedPlaces from "./SelectedPlaces";
 
 export default function EventSection() {
   const [section, setSection] = useState<"new" | "recommand" | "search">("new");
@@ -13,7 +13,7 @@ export default function EventSection() {
 
   return (
     <SectionContainer>
-      <SectionTab onClick={toggleSection} section={section} />
+      <SelectedPlaces />
     </SectionContainer>
   );
 }

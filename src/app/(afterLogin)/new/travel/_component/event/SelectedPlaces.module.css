@@ -1,0 +1,27 @@
+.conateiner {
+  padding: 34px 24px;
+}
+
+.title {
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 24px;
+  color: #090a0a;
+}
+
+.addButtonContainer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.addButton {
+  color: #48a7f8;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.addButton svg {
+  stroke: #48a7f8;
+}
